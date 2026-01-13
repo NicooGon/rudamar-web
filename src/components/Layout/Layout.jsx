@@ -118,9 +118,7 @@ const Layout = ({ children }) => {
 
       {/* CONTENIDO */}
       <main className="main-content">
-        <div className="container" style={{paddingTop: '20px'}}>
-          {children}
-        </div>
+        {children}
       </main>
 
       <footer style={{ background: '#1a252f', color: 'white', padding: '1px', textAlign: 'center', marginTop: 'auto' }}>
