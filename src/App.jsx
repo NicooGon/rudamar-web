@@ -1,8 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-// Importamos el componente Menu (asegúrate de crearlo después)
+// Menu usa 'export const', así que LLEVA llaves { }
 import { Menu } from './pages/VistaPrincipal/Menu';
+
+// Galeria usa 'export default', así que NO LLEVA llaves (y puedes quitar las llaves)
+import Galeria from './pages/Galeria/Galeria'; 
+
 import './index.css';
 
 function App() {
@@ -14,6 +18,9 @@ function App() {
         
         {/* Ruta del menú principal */}
         <Route path="/menu" element={<Menu />} />
+        
+        {/* Ruta de la galería */}
+        <Route path="/galeria" element={<Galeria />} />
         
         {/* Capturar rutas no existentes - redirige al menú */}
         <Route path="*" element={<Navigate to="/menu" replace />} />

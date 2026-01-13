@@ -38,6 +38,7 @@ const Layout = ({ children }) => {
           <li><Link to="/" onClick={closeSidebar}>Inicio <FaChevronRight size={12}/></Link></li>
           <li><Link to="/empresa" onClick={closeSidebar}>Empresa <FaChevronRight size={12}/></Link></li>
           <li><Link to="/servicios" onClick={closeSidebar}>Servicios <FaChevronRight size={12}/></Link></li>
+          <li><Link to="/galeria" onClick={closeSidebar}>Galeria <FaChevronRight size={12}/></Link></li>
           <li><Link to="/tienda" onClick={closeSidebar}>Tienda <FaChevronRight size={12}/></Link></li>
         </ul>
 
@@ -89,7 +90,7 @@ const Layout = ({ children }) => {
 
             {/* CAMBIO: Icono de barco en el botón de escritorio */}
             <button className="btn-presupuesto">
-              Contactos <FaShip />
+              Navegar <FaShip />
             </button>
           </div>
 
@@ -111,16 +112,14 @@ const Layout = ({ children }) => {
             <li className="nav-item"><Link to="/servicios">Servicios</Link></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>
-            <li className="nav-item"><Link to="/noticias">Noticias</Link></li>
+
           </ul>
         </div>
       </nav>
 
       {/* CONTENIDO */}
       <main className="main-content">
-        <div className="container" style={{paddingTop: '20px'}}>
-          {children}
-        </div>
+        {children}
       </main>
 
       <footer style={{ background: '#1a252f', color: 'white', padding: '1px', textAlign: 'center', marginTop: 'auto' }}>

@@ -1,0 +1,226 @@
+/* Galeria.css */
+.gallery-container {
+  padding-bottom: 50px;
+}
+
+/* --- Filtros (Botones de categorías) --- */
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--color-brand-primary, #5c86c4);
+  color: var(--color-dark-bg, #2c3e50);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-brand-primary, #5c86c4);
+  color: white;
+}
+
+/* --- Rejilla de Imágenes (Grid) --- */
+.gallery-grid {
+  display: grid;
+  /* Esto crea columnas automáticas que se adaptan al tamaño */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 250px; /* Altura fija para que se vean uniformes */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hace que la imagen llene el cuadro sin deformarse */
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1); /* Pequeño zoom al pasar el mouse */
+}
+
+/* Capa con el nombre de la categoría al pasar el mouse */
+.gallery-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(92, 134, 196, 0.8); /* Azul transparente */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+/* Galeria.css */
+
+/* ... MANTÉN TUS ESTILOS ANTERIORES DE FILTROS Y GRID AQUÍ ... */
+.gallery-container {
+  padding-bottom: 50px;
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--color-brand-primary, #5c86c4);
+  color: var(--color-dark-bg, #2c3e50);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-brand-primary, #5c86c4);
+  color: white;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  height: 250px;
+  cursor: pointer; /* Manito para indicar click */
+}
+
+/* Soporte para imagen y video en la miniatura */
+.gallery-item img, 
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+  transform: scale(1.05);
+}
+
+/* Icono de Play encima de los videos */
+.video-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  opacity: 0.8;
+  z-index: 5;
+  pointer-events: none; /* Para que el click pase al item */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(92, 134, 196, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 6;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* --- LIGHTBOX (MODAL) --- */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo muy oscuro */
+  backdrop-filter: blur(5px); /* Efecto borroso de fondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* Encima de todo */
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  max-width: 100%;
+  max-height: 85vh; /* Que no se salga de la pantalla verticalmente */
+  display: block;
+  border-radius: 4px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+  color: #ff4d4d;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
