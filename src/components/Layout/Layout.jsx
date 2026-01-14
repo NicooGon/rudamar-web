@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Layout.css';
 
-// Importamos iconos. 
-// CAMBIO: Quitamos FaCar y agregamos FaShip
 import { 
   FaPhoneAlt, FaWhatsapp, FaEnvelope, FaShip, 
   FaBars, FaTimes, FaChevronRight 
@@ -11,9 +9,65 @@ import {
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  
+  // Creamos una referencia para observar el banner
+  const bannerObserverRef = useRef(null);
+  const headerRef = useRef(null);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  // Efecto para observar cuando el banner sale de la vista
+  useEffect(() => {
+    // Buscamos el banner dentro de los children
+    // Asumiendo que el primer child que tenga la clase 'hero-section' es el banner
+    const banner = document.querySelector('.hero-section');
+    
+    if (!banner) return; // Si no hay banner, salimos
+
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.1 // Cuando el 10% del banner ya no es visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Si el banner NO está intersectando (no es visible en el viewport)
+        if (!entry.isIntersecting) {
+          setIsSticky(true); // Activamos sticky
+        } else {
+          setIsSticky(false); // Desactivamos sticky
+        }
+      });
+    }, options);
+
+    observer.observe(banner);
+    bannerObserverRef.current = observer;
+
+    return () => {
+      if (bannerObserverRef.current) {
+        bannerObserverRef.current.disconnect();
+      }
+    };
+  }, []); // Solo se ejecuta una vez al montar
+
+  // También podemos mantener el efecto de scroll para detectar si volvemos al top
+  useEffect(() => {
+    const handleScroll = () => {
+      // Si estamos cerca del top, forzamos a que no sea sticky
+      if (window.scrollY < 100) {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="layout-container">
@@ -43,7 +97,6 @@ const Layout = ({ children }) => {
         </ul>
 
         <div className="sidebar-footer">
-           {/* CAMBIO: Icono de barco en el botón móvil */}
            <button className="btn-sidebar-action">
              <FaShip style={{marginRight: '8px'}}/> Contactos
            </button>
@@ -51,9 +104,9 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* =======================
-          HEADER PRINCIPAL
+          HEADER PRINCIPAL - CON CLASE STICKY
          ======================= */}
-      <header className="main-header">
+      <header className={`main-header ${isSticky ? 'sticky' : ''}`} ref={headerRef}>
         <div className="container header-content">
           
           {/* Logo (Siempre visible) */}
@@ -88,7 +141,6 @@ const Layout = ({ children }) => {
               </div>
             </div>
 
-            {/* CAMBIO: Icono de barco en el botón de escritorio */}
             <button className="btn-presupuesto">
               Navegar <FaShip />
             </button>
@@ -102,7 +154,7 @@ const Layout = ({ children }) => {
       </header>
 
       {/* =======================
-          NAVBAR (SOLO ESCRITORIO)
+          NAVBAR (SOLO ESCRITORIO) - AHORA SE QUEDA STICKY
          ======================= */}
       <nav className="main-nav">
         <div className="container">
@@ -112,7 +164,6 @@ const Layout = ({ children }) => {
             <li className="nav-item"><a href="#servicios">Servicios</a></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>
-
           </ul>
         </div>
       </nav>
