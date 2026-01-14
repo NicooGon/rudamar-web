@@ -109,7 +109,7 @@ const Layout = ({ children }) => {
           <ul className="nav-list">
             <li className="nav-item active"><Link to="/">Inicio</Link></li>
             <li className="nav-item"><Link to="/empresa">Empresa</Link></li>
-            <li className="nav-item"><Link to="/servicios">Servicios</Link></li>
+            <li className="nav-item"><a href="#servicios">Servicios</a></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>
 

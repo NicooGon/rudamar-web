@@ -44,8 +44,9 @@
   background-color: var(--color-white);
   padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  position: relative;
+  position: fixed;
   z-index: 50;
+  width: 100%;
 }
 
 .header-content {
@@ -148,6 +149,11 @@
    ========================================= */
 .main-nav {
   background-color: var(--color-dark-bg);
+  position: fixed;
+  top: 63px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
 .nav-list {
   list-style: none;
@@ -284,6 +290,10 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.main-content {
+  padding-top: 110px;
 }
 
 /* =========================================

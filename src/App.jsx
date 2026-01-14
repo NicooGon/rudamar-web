@@ -7,6 +7,8 @@ import { Menu } from './pages/VistaPrincipal/Menu';
 // Galeria usa 'export default', así que NO LLEVA llaves (y puedes quitar las llaves)
 import Galeria from './pages/Galeria/Galeria'; 
 
+import Services from './pages/Services/Services.jsx';
+
 import './index.css';
 
 function App() {
@@ -21,6 +23,9 @@ function App() {
         
         {/* Ruta de la galería */}
         <Route path="/galeria" element={<Galeria />} />
+
+        {/* Servicios */}
+        <Route path="/servicios" element={<Services />} />
         
         {/* Capturar rutas no existentes - redirige al menú */}
         <Route path="*" element={<Navigate to="/menu" replace />} />
