@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Layout.css';
 
-// Importamos iconos. 
-// CAMBIO: Quitamos FaCar y agregamos FaShip
 import { 
   FaPhoneAlt, FaWhatsapp, FaEnvelope, FaShip, 
   FaBars, FaTimes, FaChevronRight 
@@ -11,9 +9,71 @@ import {
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  // Detectar si estamos en la página principal
+  const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // LÓGICA DIFERENTE PARA PÁGINA PRINCIPAL VS OTRAS PÁGINAS
+          if (isHomePage) {
+            // EN PÁGINA PRINCIPAL: Solo se oculta cuando el banner sale de vista
+            const banner = document.querySelector('.hero-section');
+            
+            if (banner) {
+              const bannerRect = banner.getBoundingClientRect();
+              const bannerBottom = bannerRect.bottom;
+              
+              // Si el banner ha salido completamente de la vista
+              if (bannerBottom <= 0) {
+                setIsSticky(true);
+              } else {
+                setIsSticky(false);
+              }
+            }
+          } else {
+            // EN OTRAS PÁGINAS: Se oculta inmediatamente al bajar
+            if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+              // Bajando: ocultar
+              setIsSticky(true);
+            } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
+              // Subiendo o en top: mostrar
+              setIsSticky(false);
+            }
+          }
+          
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY, isHomePage]);
+
+  // Resetear sticky al cambiar de página
+  useEffect(() => {
+    setIsSticky(false);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="layout-container">
@@ -43,7 +103,6 @@ const Layout = ({ children }) => {
         </ul>
 
         <div className="sidebar-footer">
-           {/* CAMBIO: Icono de barco en el botón móvil */}
            <button className="btn-sidebar-action">
              <FaShip style={{marginRight: '8px'}}/> Contactos
            </button>
@@ -51,9 +110,9 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* =======================
-          HEADER PRINCIPAL
+          HEADER PRINCIPAL - CON CLASE STICKY
          ======================= */}
-      <header className="main-header">
+      <header className={`main-header ${isSticky ? 'sticky' : ''}`}>
         <div className="container header-content">
           
           {/* Logo (Siempre visible) */}
@@ -88,7 +147,6 @@ const Layout = ({ children }) => {
               </div>
             </div>
 
-            {/* CAMBIO: Icono de barco en el botón de escritorio */}
             <button className="btn-presupuesto">
               Navegar <FaShip />
             </button>
@@ -102,7 +160,7 @@ const Layout = ({ children }) => {
       </header>
 
       {/* =======================
-          NAVBAR (SOLO ESCRITORIO)
+          NAVBAR (SOLO ESCRITORIO) - AHORA SE QUEDA STICKY
          ======================= */}
       <nav className="main-nav">
         <div className="container">
@@ -112,7 +170,6 @@ const Layout = ({ children }) => {
             <li className="nav-item"><a href="#servicios">Servicios</a></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>
-
           </ul>
         </div>
       </nav>
