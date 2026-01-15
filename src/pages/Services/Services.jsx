@@ -32,16 +32,18 @@ function BrushBackground() {
           strokeLinecap="round"
           className="stroke-draw"
         />
-        <style jsx>{`
-          .stroke-draw {
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 3000;
-            transition: stroke-dashoffset 1.5s ease-out;
-          }
-          [data-aos].aos-animate .stroke-draw {
-            stroke-dashoffset: 0;
-          }
-        `}</style>
+        <style>
+          {`
+            .stroke-draw {
+              stroke-dasharray: 2000;
+              stroke-dashoffset: 3000;
+              transition: stroke-dashoffset 1.5s ease-out;
+            }
+            [data-aos].aos-animate .stroke-draw {
+              stroke-dashoffset: 0;
+            }
+          `}
+        </style>
       </svg>
     </div>
   );

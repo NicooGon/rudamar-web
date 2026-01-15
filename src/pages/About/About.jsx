@@ -25,7 +25,7 @@ function AnimatedNumber({ target }) {
     return () => clearInterval(counter);
   }, [target]);
 
-  return <div>{count}+</div>;
+  return <span>{count}+</span>;
 }
 
 export default function About() {
