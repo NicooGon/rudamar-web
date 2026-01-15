@@ -96,7 +96,7 @@ const Layout = ({ children }) => {
         
         <ul className="sidebar-links">
           <li><Link to="/" onClick={closeSidebar}>Inicio <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/empresa" onClick={closeSidebar}>Empresa <FaChevronRight size={12}/></Link></li>
+          <li><Link to="/Historia" onClick={closeSidebar}>Trayectoria <FaChevronRight size={12}/></Link></li>
           <li><Link to="/servicios" onClick={closeSidebar}>Servicios <FaChevronRight size={12}/></Link></li>
           <li><Link to="/galeria" onClick={closeSidebar}>Galeria <FaChevronRight size={12}/></Link></li>
           <li><Link to="/tienda" onClick={closeSidebar}>Tienda <FaChevronRight size={12}/></Link></li>
@@ -166,7 +166,7 @@ const Layout = ({ children }) => {
         <div className="container">
           <ul className="nav-list">
             <li className="nav-item active"><Link to="/">Inicio</Link></li>
-            <li className="nav-item"><Link to="/empresa">Empresa</Link></li>
+            <li className="nav-item"><Link to="/Historia">Trayectoria</Link></li>
             <li className="nav-item"><a href="#servicios">Servicios</a></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>

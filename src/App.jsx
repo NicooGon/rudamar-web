@@ -9,6 +9,8 @@ import Galeria from './pages/Galeria/Galeria';
 
 import Services from './pages/Services/Services.jsx';
 
+import Reseñas from './pages/Reseñas/Reseñas.jsx';
+
 import './index.css';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
 
         {/* Servicios */}
         <Route path="/servicios" element={<Services />} />
+
+        <Route path="/Historia" element={<Reseñas />} />
         
         {/* Capturar rutas no existentes - redirige al menú */}
         <Route path="*" element={<Navigate to="/menu" replace />} />
