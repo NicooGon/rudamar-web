@@ -1,11 +1,17 @@
+// src/pages/Reseñas/Reseñas.jsx
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import { FaStar, FaGoogle, FaMapMarkerAlt } from 'react-icons/fa'; 
 import './Reseñas.css';
 
+// IMPORTAMOS EL NUEVO COMPONENTE
+import Valores from './Valores';
+
+// IMÁGENES
 import headerBg from '../../images/banner.jpeg'; 
 import tallerImg from '../../images/banner.jpeg'; 
+import suzukiImg from '../../images/Galeria/suzuki.jpg'; 
 
 const Reseñas = () => {
 
@@ -15,11 +21,10 @@ const Reseñas = () => {
       id: 1,
       name: "Marisa Piano",
       date: "hace 5 meses",
-      // He puesto una imagen genérica de Google, pero si tienes la URL real de la foto, ponla aquí
       photo: "https://lh3.googleusercontent.com/a/ACg8ocIxDSilnLShPLl2n_U8GmQqGc4_1WR5j_WZYI3xA6jexK74ZA=w45-h45-p-rp-mo-br100", 
       rating: 5,
       text: "Valoración muy positiva: mi tabla estaba lista antes de tiempo. el precio por la reparación me parece el justo. Rubén muy amablemente nos ha dado una serie de indicaciones para cuidar la tabla que nunca nadie nos había dado. Lo recomiendo.",
-      url: "https://maps.app.goo.gl/ycJbxnid26weoxBb7" // Enlace a la reseña 1
+      url: "https://maps.app.goo.gl/ycJbxnid26weoxBb7"
     },
     {
       id: 2,
@@ -28,7 +33,7 @@ const Reseñas = () => {
       photo: "https://lh3.googleusercontent.com/a/ACg8ocJJlyjHMdEI1se4ipfNYioldGiymUDlUboZoxJ2Rn0MXvH7ig=w45-h45-p-rp-mo-br100",
       rating: 5,
       text: "Mi amigo Rubén me lo recomendó un gran amigo yeyo y a día de hoy como profesional y buena persona de 10 aparte una persona que no engaña a nadie en su profesión te aconseja y te dices las cosas claras sin engaños ojalá hubiera muchas personas como el y habría menos engaños .....bueno amigo a sido un placer conocerte y que sea por muchos años más ➕️🤗🤗🤗🤗",
-      url: "https://maps.app.goo.gl/kkZHbTiiBjcKxcwa7" // Enlace a la reseña 2
+      url: "https://maps.app.goo.gl/kkZHbTiiBjcKxcwa7"
     },
     {
       id: 3,
@@ -37,11 +42,10 @@ const Reseñas = () => {
       photo: "https://lh3.googleusercontent.com/a-/ALV-UjX0Nr7OGJDPD0U8Z2HNv6hvRywydzIlRK58d4VWsPtkOGUbzp274g=w45-h45-p-rp-mo-ba2-br100",
       rating: 5,
       text: "Me los recomendó un amigo y no puedo estar más contento con la reparación. Bien hecha, en poco tiempo y a buen precio, y además te dan consejos sobre que hacer para que no te pase más. Una atención de 10!",
-      url: "https://maps.app.goo.gl/qaBXkhQFUG2Q1trw9" // Enlace a la reseña 3
+      url: "https://maps.app.goo.gl/qaBXkhQFUG2Q1trw9"
     }
   ];
 
-  // Función para estrellas
   const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (
       <FaStar key={i} color={i < rating ? "#fbbc04" : "#e4e5e9"} />
@@ -52,7 +56,7 @@ const Reseñas = () => {
     <Layout>
       <PageHeader title="Reseñas y Trayectoria" bgImage={headerBg} />
 
-      {/* SECCIÓN HISTORIA */}
+      {/* 1. SECCIÓN HISTORIA */}
       <section className="history-section">
         <div className="container">
           <div className="history-grid">
@@ -67,7 +71,7 @@ const Reseñas = () => {
               <div className="subtitle-small">Mecánica Naval Profesional</div>
               <h2 className="history-title">Un poco de nuestra historia</h2>
               <p className="history-text">
-                El Taller <strong>RUDAMAR</strong> fue fundado con la visión de ofrecer un servicio náutico integral de la más alta calidad en la Costa del Sol. Desde nuestros inicios, nos hemos especializado en la reparación de embarcaciones neumáticas y semirrígidas.
+                El Taller <strong>RUDAMAR</strong> fue fundado con la visión de ofrecer un servicio náutico integral de la más alta calidad en la Costa del Sol. Nos especializamos en la reparación de embarcaciones neumáticas y semirrígidas.
               </p>
               <a href="/contacto" className="btn-history">Contáctanos</a>
             </div>
@@ -75,7 +79,45 @@ const Reseñas = () => {
         </div>
       </section>
 
-      {/* SECCIÓN RESEÑAS */}
+      {/* 2. AQUÍ LLAMAMOS A TU NUEVO COMPONENTE */}
+      <Valores />
+
+      {/* 3. SECCIÓN SUZUKI (Experiencia) */}
+      <section className="showcase-section">
+        <div className="container">
+          <div className="showcase-grid">
+            
+            <div className="showcase-text">
+              <div className="subtitle-small" style={{justifyContent: 'flex-start'}}>Resultados Reales</div>
+              <h3>Experiencia y Prestigio</h3>
+              <p>
+                En Rudamar, cada motor y cada casco cuentan una historia. Como esta reparación integral de un motor <strong>Suzuki</strong>, donde aplicamos nuestros protocolos más exigentes.
+              </p>
+              <p>
+                Nuestro equipo técnico se mantiene en constante formación para dominar las últimas tecnologías en motores fueraborda y reparación de fibra.
+              </p>
+              <ul style={{listStyle: 'none', padding: 0, marginTop: '20px'}}>
+                <li style={{marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px'}}>
+                   <FaStar color="#5c86c4"/> Reparaciones Garantizadas
+                </li>
+                <li style={{marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px'}}>
+                   <FaStar color="#5c86c4"/> Materiales Homologados
+                </li>
+                <li style={{marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px'}}>
+                   <FaStar color="#5c86c4"/> Servicio Oficial
+                </li>
+              </ul>
+            </div>
+
+            <div className="showcase-img-container">
+              <img src={suzukiImg} alt="Motor Suzuki Reparado" className="showcase-img" />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SECCIÓN RESEÑAS */}
       <section className="reviews-section">
         <div className="container">
           <h2 className="section-title-center">
@@ -84,24 +126,12 @@ const Reseñas = () => {
 
           <div className="reviews-grid">
             {reviewsData.map((review) => (
-              /* Hacemos que toda la tarjeta sea clickeable hacia la reseña específica */
-              <a 
-                key={review.id} 
-                href={review.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{textDecoration: 'none', color: 'inherit'}}
-              >
+              <a key={review.id} href={review.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'inherit'}}>
                 <div className="review-card">
-                  
-                  {/* CABECERA MODIFICADA: Estrellas al lado de la fecha */}
                   <div className="review-header">
                     <img src={review.photo} alt={review.name} className="reviewer-photo" />
-                    
                     <div className="reviewer-info">
                       <span className="reviewer-name">{review.name}</span>
-                      
-                      {/* NUEVA FILA: Fecha + Estrellas Pequeñas */}
                       <div className="review-meta-row">
                         <span className="review-date">{review.date}</span>
                         <div className="review-stars-mini">
@@ -109,26 +139,16 @@ const Reseñas = () => {
                         </div>
                       </div>
                     </div>
-
                     <FaGoogle style={{color: '#4285F4', fontSize: '1.2rem', marginLeft: 'auto'}} />
                   </div>
-
-                  {/* El bloque de estrellas grande de abajo SE ELIMINÓ y se movió arriba */}
-
                   <p className="review-text">"{review.text}"</p>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* Botón GENERAL para ir al perfil de Rudamar en Maps */}
           <div style={{ textAlign: 'center' }}>
-            <a 
-              href="https://maps.app.goo.gl/ChIJT3MgDvz5cg0RsrJIcY2UoTM" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-google-maps"
-            >
+            <a href="https://maps.app.goo.gl/ChIJT3MgDvz5cg0RsrJIcY2UoTM" target="_blank" rel="noopener noreferrer" className="btn-google-maps">
               <FaMapMarkerAlt color="#EA4335"/> Ver todas las reseñas en Google Maps
             </a>
           </div>

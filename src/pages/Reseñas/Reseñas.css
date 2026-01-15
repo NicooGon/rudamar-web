@@ -133,6 +133,144 @@
   background-color: var(--color-brand-primary);
 }
 
+/* src/pages/Reseñas/Reseñas.css */
+
+/* --- SECCIÓN NUESTROS VALORES (Estilo Tarjetas Flotantes) --- */
+.values-section {
+  padding: 80px 0;
+  background-color: #f4f4f4; /* Fondo gris claro base */
+  background-image: url('../../images/banner.jpeg'); /* O usa una imagen oscura de fondo con overlay */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto Parallax bonito */
+  position: relative;
+}
+
+/* Overlay oscuro para que se lea el texto blanco del título */
+.values-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(44, 62, 80, 0.85); /* Azul oscuro Rudamar con transparencia */
+}
+
+.values-container {
+  position: relative; /* Para estar encima del overlay */
+  z-index: 2;
+  text-align: center;
+}
+
+.values-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.value-card {
+  background: white;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  border-bottom: 4px solid transparent;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  border-bottom: 4px solid var(--color-brand-primary);
+}
+
+.value-icon-box {
+  font-size: 2.5rem;
+  color: var(--color-brand-primary); /* Azul Rudamar */
+  margin-bottom: 20px;
+}
+
+.value-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.value-card p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* --- SECCIÓN SUZUKI (Estilo "Experiencia y Prestigio") --- */
+.showcase-section {
+  padding: 80px 0;
+  background-color: white;
+}
+
+/* Invertimos el orden respecto a la sección Historia para variar */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.showcase-text h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.showcase-text p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.showcase-img-container {
+  position: relative;
+}
+
+.showcase-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* Decoración de puntos o cuadro tras la foto */
+.showcase-img-container::before {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: -20px;
+  width: 100px; height: 100px;
+  border-left: 5px solid var(--color-brand-primary);
+  border-bottom: 5px solid var(--color-brand-primary);
+  z-index: -1;
+}
+
+@media (max-width: 900px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  .values-title {
+    font-size: 2rem;
+  }
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .history-grid {

@@ -1,13 +1,12 @@
-/* src/components/Layout/Layout.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
 
 :root {
-  /* COLOR PRINCIPAL: Azul (basado en botón "Enviar Mensaje") */
+  /* COLOR PRINCIPAL: Azul */
   --color-brand-primary: #5c86c4; 
   --color-brand-hover: #4a75b0;
   
-  /* COLOR SECUNDARIO: Fondo Oscuro (Barra Nav) */
+  /* COLOR SECUNDARIO: Fondo Oscuro */
   --color-dark-bg: #2c3e50; 
   
   /* Textos y Fondos */
@@ -16,8 +15,12 @@
   --color-text-light: #777777;
   
   /* Fuentes */
-  --font-heading: 'Oswald', sans-serif; /* Para Logo y Nav */
-  --font-body: 'Roboto', sans-serif;    /* Para textos normales */
+  --font-heading: 'Oswald', sans-serif; 
+  --font-body: 'Roboto', sans-serif;    
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* --- RESET Y BASE --- */
@@ -26,7 +29,7 @@
   flex-direction: column;
   min-height: 100vh;
   font-family: var(--font-body);
-  overflow-x: hidden; /* Evita scroll horizontal por el sidebar */
+  overflow-x: hidden; 
 }
 
 .container {
@@ -44,17 +47,18 @@
   background-color: var(--color-white);
   padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  position: fixed; /* Cambiado de relative a fixed */
+  position: fixed; /* Header fijo al principio */
   top: 0;
   left: 0;
   width: 100%;
-  height: 63px;
+  height: 75px; /* Altura fija para que no salte */
   z-index: 1000;
   transition: all 0.3s ease-in-out;
 }
 
+/* Cuando se activa la clase sticky (al bajar scroll), el header sube y se esconde */
 .main-header.sticky {
-  top: -63px; /* Oculta el header desplazándolo hacia arriba */
+  top: -75px; 
   box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
@@ -62,9 +66,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  /* --- CAMBIO PARA EL LOGO A LA IZQUIERDA --- */
+  max-width: 96% !important; /* Rompemos el ancho del container para ir a los bordes */
+  width: 100%;
+  padding: 0 10px;
 }
 
-/* LOGO */
+/* --- ESTILOS DEL LOGO + TEXTO --- */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre imagen y texto */
+  text-decoration: none;
+}
+
+.header-logo-img {
+  height: 55px; /* Altura controlada */
+  width: auto;
+  object-fit: contain;
+}
+
 .logo-text {
   font-family: var(--font-heading);
   font-size: 2.2rem;
@@ -92,12 +114,12 @@
 .icon-box {
   width: 38px;
   height: 38px;
-  border: 2px solid var(--color-brand-primary); /* Borde Azul */
+  border: 2px solid var(--color-brand-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-brand-primary); /* Icono Azul */
+  color: var(--color-brand-primary);
   font-size: 1.1rem;
   flex-shrink: 0;
 }
@@ -122,7 +144,7 @@
 
 /* BOTÓN PRESUPUESTO */
 .btn-presupuesto {
-  background-color: var(--color-brand-primary); /* Fondo Azul */
+  background-color: var(--color-brand-primary);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -144,7 +166,7 @@
 
 /* BOTÓN HAMBURGUESA (Oculto en escritorio) */
 .hamburger-btn {
-  display: none; /* Por defecto oculto */
+  display: none;
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -159,25 +181,24 @@
 .main-nav {
   background-color: var(--color-dark-bg);
   position: fixed;
-  top: 63px; /* Por defecto debajo del header */
+  top: 75px; /* Empieza debajo del header */
   left: 0;
   width: 100%;
   z-index: 999;
   transition: all 0.3s ease-in-out;
 }
 
+/* Cuando el header se esconde (tiene clase sticky), el navbar sube al top 0 */
 .main-header.sticky + .main-nav {
   top: 0;
 }
 
+/* Padding para que el contenido no quede oculto bajo los headers fijos */
 .main-content {
-  padding-top: 126px; /* Header (63px) + Navbar (63px) aprox */
+  padding-top: 108px; /* Header (75px) + Navbar (63px) aprox */
   transition: padding-top 0.3s ease-in-out;
 }
 
-.main-header.sticky ~ .main-content {
-  padding-top: 63px; /* Solo la altura de la navbar */
-}
 .nav-list {
   list-style: none;
   display: flex;
@@ -202,15 +223,13 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* El item activo ahora es Azul */
 .nav-item.active a {
   background-color: var(--color-brand-primary);
 }
 
 /* =========================================
-   SIDEBAR MÓVIL (Off-Canvas / Drawer)
+   SIDEBAR MÓVIL (Off-Canvas)
    ========================================= */
-/* 1. Backdrop (Fondo oscuro) */
 .sidebar-overlay {
   position: fixed;
   top: 0;
@@ -218,7 +237,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px); /* Efecto borroso elegante */
+  backdrop-filter: blur(4px);
   z-index: 998;
   opacity: 0;
   visibility: hidden;
@@ -230,16 +249,15 @@
   visibility: visible;
 }
 
-/* 2. El Sidebar en sí */
 .sidebar-menu {
   position: fixed;
   top: 0;
   left: 0;
   width: 280px;
   height: 100vh;
-  background-color: var(--color-dark-bg); /* Fondo oscuro */
+  background-color: var(--color-dark-bg);
   z-index: 999;
-  transform: translateX(-100%); /* Oculto a la izquierda */
+  transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -248,10 +266,9 @@
 }
 
 .sidebar-menu.open {
-  transform: translateX(0); /* Visible */
+  transform: translateX(0);
 }
 
-/* Contenido del Sidebar */
 .sidebar-header {
   display: flex;
   justify-content: space-between;
@@ -315,48 +332,38 @@
   cursor: pointer;
 }
 
-.main-content {
-  padding-top: 110px;
-}
-
 /* =========================================
    MEDIA QUERIES (Móvil)
    ========================================= */
 @media (max-width: 900px) {
-  /* 1. Ocultar elementos de escritorio */
   .contact-group-desktop, 
   .main-nav {
     display: none;
   }
 
-  /* 2. Mostrar botón hamburguesa */
   .hamburger-btn {
     display: block;
   }
   
-  
-  /* Ajuste de padding en móvil */
   .main-header {
     padding: 10px 0;
-    height: 60px; /* Reducir ligeramente en móvil */
+    height: 60px; /* Header más pequeño en móvil */
   }
   
-  
+  .header-logo-img {
+    height: 40px; /* Logo más pequeño en móvil */
+  }
+
   .logo-text {
     font-size: 1.8rem;
   }
-  html {
-  scroll-behavior: smooth;
-}
 
-.main-content {
+  .main-content {
     padding-top: 60px !important; /* Solo header en móvil */
   }
-
+  
+  /* En móvil, si el header se oculta, el contenido sube casi todo */
   .main-header.sticky ~ .main-content {
-    padding-top: 10px !important; /* Casi nada cuando header está oculto */
+    padding-top: 10px !important;
   }
-
 }
-html {
-  scroll-behavior: smooth;}

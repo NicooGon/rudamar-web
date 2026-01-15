@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Layout.css';
 
+// 1. IMPORTAMOS EL LOGO
+import logoImg from '../../images/logo.png'; 
+
 import { 
   FaPhoneAlt, FaWhatsapp, FaEnvelope, FaShip, 
   FaBars, FaTimes, FaChevronRight 
@@ -88,7 +91,10 @@ const Layout = ({ children }) => {
 
       <aside className={`sidebar-menu ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <div className="sidebar-logo">RUDAMAR</div>
+           {/* Logo en Sidebar también */}
+          <div className="sidebar-logo">
+             <img src={logoImg} alt="Rudamar" style={{height: '35px'}} />
+          </div>
           <button className="close-btn" onClick={closeSidebar}>
             <FaTimes />
           </button>
@@ -110,14 +116,21 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* =======================
-          HEADER PRINCIPAL - CON CLASE STICKY
+          HEADER PRINCIPAL - CON CLASE STICKY (TU LÓGICA)
          ======================= */}
       <header className={`main-header ${isSticky ? 'sticky' : ''}`}>
         <div className="container header-content">
           
-          {/* Logo (Siempre visible) */}
+          {/* Logo (Siempre visible) - AQUI IMPLEMENTAMOS LA IMAGEN */}
           <div className="logo-area">
-            <div className="logo-text">RUDAMAR</div>
+             <Link to="/" className="brand-link">
+                <img 
+                  src={logoImg} 
+                  alt="Logo Rudamar" 
+                  className="header-logo-img" 
+                />
+                <span className="logo-text">RUDAMAR</span>
+             </Link>
           </div>
 
           {/* Grupo Contacto (SOLO ESCRITORIO) */}
@@ -160,14 +173,14 @@ const Layout = ({ children }) => {
       </header>
 
       {/* =======================
-          NAVBAR (SOLO ESCRITORIO) - AHORA SE QUEDA STICKY
+          NAVBAR (SOLO ESCRITORIO)
          ======================= */}
       <nav className="main-nav">
         <div className="container">
           <ul className="nav-list">
             <li className="nav-item active"><Link to="/">Inicio</Link></li>
             <li className="nav-item"><Link to="/Historia">Trayectoria</Link></li>
-            <li className="nav-item"><a href="#servicios">Servicios</a></li>
+            <li className="nav-item"><Link to="/servicios">Servicios</Link></li>
             <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
             <li className="nav-item"><Link to="/galeria">Galería</Link></li>
           </ul>
