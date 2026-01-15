@@ -23,7 +23,7 @@ function AnimatedNumber({ target }) {
     }, 16);
 
     return () => clearInterval(counter);
-  }, [target]);
+  }, [target])
 
   return <span>{count}+</span>;
 }
