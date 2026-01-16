@@ -12,8 +12,8 @@ const Ubicacion = () => {
         <iframe 
           title="Ubicación Rudamar"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4656.923372868926!2d-4.473338597942474!3d36.69376887810722!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f9fc0e20734f%3A0x33a1948d7148b2b2!2sRudamar-Spain!5e0!3m2!1ses!2sve!4v1768516642354!5m2!1ses!2sve" 
-          width="100%" 
-          height="100%" 
+          width="40%" 
+          height="40%" 
           style={{ border: 0, filter: 'grayscale(0%)' }} // Puedes cambiar grayscale a 100% para un look blanco y negro moderno
           allowFullScreen="" 
           loading="lazy" 

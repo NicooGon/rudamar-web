@@ -60,19 +60,13 @@ export default function Services() {
   }, []);
 
   return (
-    <section
-      id="servicios"
-      className="relative py-16 px-6 min-h-[calc(100vh/1.5)] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden"
-    >
+    <section id="servicios" className="relative py-16 px-6 min-h-[calc(100vh/1.5)] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden">
 
-      <BrushBackground/>
+      <BrushBackground />
 
       <div className="relative max-w-7xl mx-auto">
-
-        <div
-          className="text-center mb-16"
-          data-aos="fade-up" data-aos-delay="200"
-        >
+        
+        <div className="text-center mb-16" data-aos="fade-up" data-aos-delay="200">
           <h2 className="text-4xl font-bold text-gray-800">
             Nuestros Servicios
           </h2>
@@ -83,8 +77,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-          <div data-aos="fade-up" data-aos-delay="400">
+          <div data-aos="zoom-in" data-aos-delay="400">
             <ServiceCard
               icon={GiBoatFishing}
               title="Botes y Neumáticas"
@@ -100,7 +93,7 @@ export default function Services() {
             />
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="400">
+          <div data-aos="zoom-in" data-aos-delay="550">
             <ServiceCard
               icon={GiAutoRepair}
               title="Fibra de Vidrio"
@@ -112,7 +105,7 @@ export default function Services() {
             />
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="400">
+          <div data-aos="zoom-in" data-aos-delay="700">
             <ServiceCard
               icon={MdOutlineSurfing}
               title="Paddle Surf"
@@ -123,7 +116,6 @@ export default function Services() {
               ]}
             />
           </div>
-
         </div>
       </div>
     </section>

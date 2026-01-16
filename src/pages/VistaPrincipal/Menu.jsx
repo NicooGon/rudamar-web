@@ -4,6 +4,7 @@ import About from '../About/About.jsx';
 import Services from '../Services/Services.jsx';
 import Ubicacion from '../../components/Ubicacion/Ubicacion';
 import BannerPrincipal from './BannerPrincipal.jsx';
+import ContactPage from '../Contact/Contact.jsx';
 
 
 export const Menu = () => {
@@ -13,7 +14,8 @@ export const Menu = () => {
       <BannerPrincipal />
       <About />
       <Services></Services>
-      <Ubicacion />
+      <ContactPage/>
+     
     </Layout>
   );
 };

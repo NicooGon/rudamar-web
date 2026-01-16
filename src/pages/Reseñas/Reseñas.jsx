@@ -4,6 +4,9 @@ import Layout from '../../components/Layout/Layout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import { FaStar, FaGoogle, FaMapMarkerAlt } from 'react-icons/fa'; 
 import './Reseñas.css';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // IMPORTAMOS EL NUEVO COMPONENTE
 import Valores from './Valores';
@@ -14,6 +17,14 @@ import tallerImg from '../../images/banner.jpeg';
 import suzukiImg from '../../images/Galeria/suzuki.jpg'; 
 
 const Reseñas = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+  }, []);
 
   // --- DATOS DE TUS RESEÑAS ---
   const reviewsData = [
@@ -60,14 +71,14 @@ const Reseñas = () => {
       <section className="history-section">
         <div className="container">
           <div className="history-grid">
-            <div className="history-images">
+            <div className="history-images" data-aos="fade-right" data-aos-delay="300">
               <img src={tallerImg} alt="Taller Rudamar" className="img-main" />
               <div className="years-badge">
                 <span className="years-number">23+</span>
                 <span className="years-text">Años de<br/>Experiencia</span>
               </div>
             </div>
-            <div className="history-content">
+            <div className="history-content" data-aos="fade-left" data-aos-delay="300">
               <div className="subtitle-small">Mecánica Naval Profesional</div>
               <h2 className="history-title">Un poco de nuestra historia</h2>
               <p className="history-text">
@@ -87,7 +98,7 @@ const Reseñas = () => {
         <div className="container">
           <div className="showcase-grid">
             
-            <div className="showcase-text">
+            <div className="showcase-text" data-aos="fade-right" data-aos-delay="300">
               <div className="subtitle-small" style={{justifyContent: 'flex-start'}}>Resultados Reales</div>
               <h3>Experiencia y Prestigio</h3>
               <p>
@@ -109,7 +120,7 @@ const Reseñas = () => {
               </ul>
             </div>
 
-            <div className="showcase-img-container">
+            <div className="showcase-img-container" data-aos="fade-left" data-aos-delay="300">
               <img src={suzukiImg} alt="Motor Suzuki Reparado" className="showcase-img" />
             </div>
 
@@ -119,7 +130,7 @@ const Reseñas = () => {
 
       {/* 4. SECCIÓN RESEÑAS */}
       <section className="reviews-section">
-        <div className="container">
+        <div className="container" data-aos="fade-up" data-aos-delay="300">
           <h2 className="section-title-center">
             Lo que dicen nuestros clientes <span style={{color:'#4285F4'}}>G</span><span style={{color:'#EA4335'}}>o</span><span style={{color:'#FBBC05'}}>o</span><span style={{color:'#4285F4'}}>g</span><span style={{color:'#34A853'}}>l</span><span style={{color:'#EA4335'}}>e</span>
           </h2>

@@ -139,24 +139,38 @@ const Layout = ({ children }) => {
             <div className="info-item">
               <div className="icon-box"><FaPhoneAlt /></div>
               <div className="info-text">
-                <span className="label">Teléfono</span>
-                <span className="value"></span>
+                <a
+                  href="tel:+34686794141"
+                  className="label"
+                >
+                  Teléfono
+                </a>
               </div>
             </div>
 
             <div className="info-item">
               <div className="icon-box"><FaWhatsapp /></div>
               <div className="info-text">
-                <span className="label">Whatsapp</span>
-                <span className="value"></span>
+                <a
+                  href="https://wa.me/34686794141?text=Hola,%20quiero%20información"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label"
+                >
+                  Whatsapp
+                </a>
               </div>
             </div>
 
             <div className="info-item">
               <div className="icon-box"><FaEnvelope /></div>
               <div className="info-text">
-                <span className="label">Email</span>
-                <span className="value"></span>
+                <a
+                  href="mailto:rudacid@yahoo.es"
+                  className="label"
+                >
+                  Email
+                </a>
               </div>
             </div>
 
