@@ -14,8 +14,14 @@ export const Menu = () => {
     <Layout>
       <BannerPrincipal />
       <About />
-      <Services></Services>
-      <ContactPage/>
+      <div className="relative overflow-hidden">
+
+        <div className="bubble-container" />
+
+        <Services />
+        <ContactPage />
+
+      </div>
       <Footer />
     </Layout>
   );

@@ -20,3 +20,57 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.bubble-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.bubble-container::before,
+.bubble-container::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  animation: bubblesUp linear infinite;
+}
+
+.bubble-container::before {
+  left: 10%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+
+  box-shadow:
+    20vw 20vh rgba(255,255,255,.25),
+    40vw 50vh rgba(255,255,255,.25),
+    70vw 30vh rgba(255,255,255,.25);
+}
+
+/* burbuja 2 */
+.bubble-container::after {
+  left: 60%;
+  width: 80px;
+  height: 80px;
+  animation-duration: 9s;
+  animation-delay: -4s;
+
+  box-shadow:
+    15vw 40vh rgba(255,255,255,.25),
+    35vw 60vh rgba(255,255,255,.25),
+    55vw 25vh rgba(255,255,255,.25);
+}
+
+@keyframes bubblesUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-160vh);
+  }
+}

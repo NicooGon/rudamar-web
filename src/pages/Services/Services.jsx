@@ -11,7 +11,7 @@ function BrushBackground() {
       data-aos="fade-up"
       data-aos-delay="800"
       data-aos-duration="2000"
-      className="absolute top-24 left-1/2 -translate-x-1/2 w-[1600px] h-[700px] pointer-events-none"
+      className="absolute top-24 left-1/2 -translate-x-1/2 w-[1600px] h-[700px] pointer-events-none z-10"
     >
       <svg
         viewBox="0 0 1600 600"
@@ -64,7 +64,7 @@ export default function Services() {
 
       <BrushBackground />
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto z-10">
         
         <div className="text-center mb-16" data-aos="fade-up" data-aos-delay="200">
           <h2 className="text-4xl font-bold text-gray-800">
