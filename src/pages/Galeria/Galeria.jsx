@@ -4,6 +4,9 @@ import Layout from '../../components/Layout/Layout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import './Galeria.css';
 
+// 1. IMPORTAR HOOK
+import { useTranslation } from 'react-i18next';
+
 import headerBg from '../../images/banner.jpeg'; 
 import Footer from '../VistaPrincipal/Footer.jsx';
 
@@ -11,20 +14,14 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Galeria = () => {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
+
   const [imagesList, setImagesList] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
-
-  // Diccionario de categorías
-  const categoryLabels = {
-    '1NAUTICAS': 'Neumáticas y PVC',
-    '2MOTORES': 'Motores',
-    '3TALLER': 'Nuestro Taller',
-    '4PADDLE_SURF': 'Paddle Surf',
-    '5ANTES_DESPUES': 'Antes y Después'
-  };
 
   useEffect(() => {
     AOS.init({
@@ -82,13 +79,12 @@ const Galeria = () => {
 
   return (
     <Layout>
-      <div>
-        <PageHeader title="Nuestra Galería" bgImage={headerBg} />
-      </div>
+      {/* TÍTULO TRADUCIDO */}
+      <PageHeader title={t('gallery_page_title')} bgImage={headerBg} />
 
       <div className="gallery-container container">
         
-        {/* FILTROS */}
+        {/* BOTONES DE FILTRO TRADUCIDOS */}
         <div className="gallery-filters">
           {categories.map((cat, index) => (
             <button 
@@ -96,7 +92,9 @@ const Galeria = () => {
               className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
               onClick={() => handleFilterClick(cat)}
             >
-              {categoryLabels[cat] || cat.replace(/^[0-9]+/, '')}
+              {/* TRUCO: Usamos la clave 'cat_' + el nombre de tu carpeta para buscar la traducción */}
+              {/* Ej: Si la carpeta es '1NAUTICAS', buscará t('cat_1NAUTICAS') */}
+              {t(`cat_${cat}`, { defaultValue: cat.replace(/^[0-9]+/, '') })}
             </button>
           ))}
         </div>
@@ -120,16 +118,17 @@ const Galeria = () => {
               )}
 
               <div className="gallery-overlay">
-                <span>Ver {item.type === 'video' ? 'Video' : 'Imagen'}</span>
+                {/* TEXTO TRADUCIDO AL HACER HOVER */}
+                <span>{item.type === 'video' ? t('gallery_view_video') : t('gallery_view_image')}</span>
               </div>
             </div>
           ))}
         </div>
 
         {filteredImages.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '40px' }}>
-            <p>Cargando galería...</p>
-          </div>
+            <div style={{textAlign: 'center', width: '100%', padding: '40px'}}>
+              <p>{t('gallery_loading')}</p>
+            </div>
         )}
       </div>
 
