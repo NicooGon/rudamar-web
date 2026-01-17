@@ -5,6 +5,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import './Galeria.css';
 
 import headerBg from '../../images/banner.jpeg'; 
+import Footer from '../VistaPrincipal/Footer.jsx'
 
 const Galeria = () => {
   const [imagesList, setImagesList] = useState([]);
@@ -151,7 +152,7 @@ const Galeria = () => {
           </div>
         </div>
       )}
-
+    <Footer />
     </Layout>
   );
 };

@@ -1,0 +1,193 @@
+/* src/components/Footer/Footer.css */
+
+.footer-section {
+  position: relative;
+  background-color: #111; /* Color de respaldo */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto Parallax opcional */
+  color: white;
+  padding-top: 80px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* El overlay oscuro es CLAVE para que se parezca a la referencia */
+.footer-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(20,30,40,0.85) 100%);
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas: Marca | Contacto */
+  gap: 60px;
+  padding-bottom: 60px;
+}
+
+/* --- COLUMNA 1: MARCA --- */
+.footer-brand {
+  max-width: 500px;
+}
+
+.brand-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  color: #fff;
+}
+
+.brand-subtitle {
+  font-family: 'Oswald', sans-serif;
+  color: #5c86c4; /* Azul marca */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.brand-desc {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+/* Botón llamativo estilo referencia */
+.btn-footer-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #5c86c4; /* Azul en lugar del rojo de la referencia */
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border: 2px solid #5c86c4;
+}
+
+.btn-footer-action:hover {
+  background-color: transparent;
+  color: #5c86c4;
+}
+
+/* --- COLUMNA 2: CONTACTO --- */
+.footer-contact {
+  padding-left: 40px;
+  border-left: 1px solid rgba(255,255,255,0.1); /* Línea separadora sutil */
+}
+
+.footer-heading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.heading-line {
+  width: 40px;
+  height: 3px;
+  background-color: #5c86c4;
+  margin-bottom: 25px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.icon-wrap {
+  color: #5c86c4; /* Iconos en azul */
+  font-size: 1.2rem;
+  margin-top: 3px;
+}
+
+.text-wrap .label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #777;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.text-wrap p {
+  margin: 0;
+  color: #eee;
+  font-size: 0.95rem;
+}
+
+/* Redes Sociales */
+.footer-socials {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-btn:hover {
+  background-color: #5c86c4;
+  transform: translateY(-3px);
+}
+
+/* --- BOTTOM BAR --- */
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .footer-contact {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+  }
+}

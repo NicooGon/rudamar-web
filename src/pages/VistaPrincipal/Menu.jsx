@@ -5,6 +5,7 @@ import Services from '../Services/Services.jsx';
 import Ubicacion from '../../components/Ubicacion/Ubicacion';
 import BannerPrincipal from './BannerPrincipal.jsx';
 import ContactPage from '../Contact/Contact.jsx';
+import Footer from './Footer.jsx'
 
 
 export const Menu = () => {
@@ -15,7 +16,7 @@ export const Menu = () => {
       <About />
       <Services></Services>
       <ContactPage/>
-     
+      <Footer />
     </Layout>
   );
 };

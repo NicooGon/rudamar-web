@@ -7,6 +7,7 @@ import './Reseñas.css';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Footer from '../VistaPrincipal/Footer.jsx'
 
 // IMPORTAMOS EL NUEVO COMPONENTE
 import Valores from './Valores';
@@ -166,7 +167,7 @@ const Reseñas = () => {
 
         </div>
       </section>
-
+      <Footer />
     </Layout>
   );
 };

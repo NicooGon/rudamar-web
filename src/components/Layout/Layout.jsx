@@ -206,9 +206,6 @@ const Layout = ({ children }) => {
         {children}
       </main>
 
-      <footer style={{ background: '#1a252f', color: 'white', padding: '1px', textAlign: 'center', marginTop: 'auto' }}>
-        <p>© 2026 Servicio Oficial RUDAMAR</p>
-      </footer>
     </div>
   );
 };
