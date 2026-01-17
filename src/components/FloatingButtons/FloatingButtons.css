@@ -1,0 +1,87 @@
+/* src/components/FloatingButtons/FloatingButtons.css */
+
+.floating-container {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* --- BOTÓN WHATSAPP --- */
+.whatsapp-btn {
+  width: 47px; height: 47px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 30px;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* Animación de pulso (ondas) */
+.whatsapp-pulse {
+  position: absolute; width: 100%; height: 100%;
+  border-radius: 50%; border: 2px solid #25D366;
+  animation: pulse-animation 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* --- BOTÓN SCROLL TOP --- */
+.scroll-top-btn {
+  width: 50px; height: 50px;
+  background-color: white; /* Fondo blanco */
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  opacity: 0; visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.scroll-top-btn.show {
+  opacity: 1; visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-5px);
+}
+
+/* Flecha central */
+.arrow-icon {
+  font-size: 18px;
+  color: #c0392b; /* Rojo oscuro o tu color principal */
+  position: absolute;
+  z-index: 2;
+}
+
+/* Anillo de Progreso */
+.progress-ring {
+  position: absolute;
+  top: 0; left: 0;
+  transform: rotate(-90deg); /* Empezar desde arriba */
+}
+
+.progress-ring__circle {
+  stroke-dasharray: 138; /* Circunferencia aproximada */
+  transition: stroke-dashoffset 0.1s;
+  stroke: #c0392b; /* Color del círculo de progreso */
+}

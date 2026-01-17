@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import Imagen1 from '@/images/Imagen1.jpeg'
-import { GiAutoRepair } from 'react-icons/gi'
+import Imagen1 from '@/images/Imagen1.jpeg';
+import { GiAutoRepair } from 'react-icons/gi';
 import { GrContact } from "react-icons/gr";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+// 1. IMPORTAR EL HOOK DE TRADUCCIÓN
+import { useTranslation } from 'react-i18next';
 
 function AnimatedNumber({ target }) {
   const [count, setCount] = useState(0);
@@ -29,6 +32,8 @@ function AnimatedNumber({ target }) {
 }
 
 export default function About() {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
 
    useEffect(() => {
     AOS.init({
@@ -39,7 +44,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-b  from-white  via-white via-[50%]  to-sky-50 py-12 pb-48 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-white via-white via-[50%] to-sky-50 py-12 pb-48 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center" >
 
         <div className="order-1 lg:order-2">
@@ -47,45 +52,40 @@ export default function About() {
           <div className="flex items-center mb-4 gap-4 mt-16" data-aos="fade-left" data-aos-delay="200">
             <GiAutoRepair className="text-[var(--color-brand-primary)] text-3xl" />
             <div className="text-base lg:text-lg font-bold uppercase tracking-widest text-[var(--color-brand-primary)] font-oswald">
-              Acerca de nosotros
+              {t('about_label')}
             </div>
           </div>
 
           <h2 className="mb-6 lg:mb-8 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text-main)] leading-tight font-oswald" data-aos="fade-left" data-aos-delay="300">
-            Taller de confianza <br /> en Málaga
+            {t('about_title_line1')} <br /> {t('about_title_line2')}
           </h2>
 
           <p className="mb-4 lg:mb-6 text-[var(--color-text-main)] text-base sm:text-lg leading-relaxed font-roboto" data-aos="fade-left" data-aos-delay="450">
-            En Rudamar no hacemos promesas vacías. Ofrecemos trabajo bien hecho,
-            ingeniería de calidad y precios justos. Nos especializamos en la
-            reparación y el mantenimiento de lanchas, priorizando siempre la
-            transparencia y la comunicación con cada cliente.
+            {t('about_desc_1')}
           </p>
 
           <p className="mb-4 lg:mb-6 text-[var(--color-text-main)] text-base sm:text-lg leading-relaxed font-roboto" data-aos="fade-left" data-aos-delay="450">
-            Antes de realizar cualquier trabajo importante, te consultamos y te
-            explicamos cada paso. Nuestro servicio es ágil y eficiente, para que
-            tu lancha vuelva al agua en el menor tiempo posible.
+            {t('about_desc_2')}
           </p>
 
           <ul className="space-y-3 mb-8 lg:mb-10 font-medium font-roboto" data-aos="fade-left" data-aos-delay="450">
             <li className="flex items-center gap-3 text-base sm:text-lg text-[var(--color-text-main)]">
               <span className="text-[var(--color-brand-primary)] text-xl">✔</span>
-              Taller de fácil acceso
+              {t('about_check_1')}
             </li>
             <li className="flex items-center gap-3 text-base sm:text-lg text-[var(--color-text-main)]">
               <span className="text-[var(--color-brand-primary)] text-xl">✔</span>
-              Equipo técnico altamente capacitado
+              {t('about_check_2')}
             </li>
             <li className="flex items-center gap-3 text-base sm:text-lg text-[var(--color-text-main)]">
               <span className="text-[var(--color-brand-primary)] text-xl">✔</span>
-              Servicio seguro, profesional y duradero
+              {t('about_check_3')}
             </li>
           </ul>
 
           <button className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-[var(--color-white)] font-semibold px-10 py-4 rounded-md transition font-oswald flex items-center gap-3 text-lg" data-aos="fade-left" data-aos-delay="400">
             <GrContact className="text-white text-xl" />
-            Contáctenos
+            {t('about_btn_contact')}
           </button>
         </div>
 
@@ -109,7 +109,7 @@ export default function About() {
               <AnimatedNumber target={20} />
             </p>
             <p className="text-xs sm:text-sm md:text-sm lg:text-base font-semibold text-[var(--color-text-light)] font-roboto">
-              Años de experiencia
+              {t('about_years_exp')}
             </p>
           </div>
 
