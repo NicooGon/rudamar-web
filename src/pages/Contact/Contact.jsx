@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FaClock, FaDirections, FaPaperPlane } from "react-icons/fa";
+import { FaClock, FaDirections, FaPaperPlane, FaUser, FaPhoneAlt, FaEnvelope, FaCommentDots } from "react-icons/fa";
 import { AlertDialog, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel } from "../../components/Alert/Alert.jsx";
 import { useTranslation } from 'react-i18next';
 
@@ -32,31 +32,6 @@ export default function ContactPage() {
             className="absolute inset-0 w-full h-full border-0 grayscale-[10%] contrast-110"
             loading="lazy"
           />
-
-          <div
-            className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md px-5 py-3 rounded-xl shadow-lg flex items-center gap-3 border-l-4 border-[#5c86c4]"
-            data-aos="fade-right"
-            data-aos-delay="200"
-          >
-            <FaClock className="text-[#5c86c4] text-xl" />
-            <div>
-              <p className="text-[11px] uppercase text-gray-400 font-bold tracking-wider">
-                {t('map_hours_title')}
-              </p>
-              <p className="font-bold text-gray-800 text-sm">
-                8:00 - 18:00 (L-V)
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="https://maps.app.goo.gl/jdvHxRb28WD3Kykb7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-5 right-5 bg-white px-4 py-2 rounded-full shadow-md text-xs font-bold flex items-center gap-2 hover:scale-105 transition"
-          >
-            <FaDirections /> {t('map_btn_directions')}
-          </a>
         </div>
 
         <div className="p-10 flex flex-col justify-center">
@@ -77,49 +52,67 @@ export default function ContactPage() {
             className="space-y-4"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <div className="relative">
+                <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder={t('form_name')}
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-400"
+                />
+              </div>
+
+              <div className="relative">
+                <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder={t('form_lastname')}
+                  value={apellido}
+                  onChange={(e) => setApellido(e.target.value)}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-400"
+                />
+              </div>
+            </div>
+
+            <div className="relative">
+              <FaPhoneAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
-                type="text"
-                placeholder={t('form_name')}
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
+                type="tel"
+                placeholder={t('form_phone')}
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
                 required
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
-              />
-              <input
-                type="text"
-                placeholder={t('form_lastname')}
-                value={apellido}
-                onChange={(e) => setApellido(e.target.value)}
-                required
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-400"
               />
             </div>
 
-            <input
-              type="tel"
-              placeholder={t('form_phone')}
-              value={telefono}
-              onChange={(e) => setTelefono(e.target.value)}
-              required
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
-            />
+            <div className="relative">
+              <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                type="email"
+                placeholder={t('form_email')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-400"
+              />
+            </div>
 
-            <input
-              type="email"
-              placeholder={t('form_email')}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
-            />
-
-            <textarea
-              rows={4}
-              placeholder={t('form_message')}
-              value={mensaje}
-              onChange={(e) => setMensaje(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 resize-none placeholder:text-gray-450"
-            />
+            <div className="relative">
+              <FaCommentDots className="absolute left-3 top-1/5 transform -translate-y-1/2 text-gray-400" />
+              <textarea
+                rows={4}
+                placeholder={t('form_message')}
+                value={mensaje}
+                onChange={(e) => setMensaje(e.target.value)}
+                required
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-400"
+              />
+            </div>
 
             <button
               type="submit"
@@ -145,7 +138,7 @@ export default function ContactPage() {
             </AlertDialogDescription>
           </div>
           <div className="flex justify-center mt-6">
-            <AlertDialogCancel className="bg-slate-100 hover:bg-slate-200 px-8 py-2 rounded-full font-bold text-sm">
+            <AlertDialogCancel className="bg-slate-100 hover:bg-slate-200 px-8 py-2 rounded-full font-bold text-sm border-[var(--color-brand-primary)]">
               {t('alert_close')}
             </AlertDialogCancel>
           </div>

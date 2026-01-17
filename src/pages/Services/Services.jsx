@@ -14,7 +14,7 @@ function BrushBackground() {
       data-aos="fade-up"
       data-aos-delay="800"
       data-aos-duration="2000"
-      className="absolute top-24 left-1/2 -translate-x-1/2 w-[1600px] h-[700px] pointer-events-none z-10"
+      className="absolute top-24 left-1/2 -translate-x-1/2 w-[1500px] h-[700px] pointer-events-none z-10"
     >
       <svg
         viewBox="0 0 1600 600"
@@ -65,7 +65,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="servicios" className="relative py-16 px-6 min-h-[calc(100vh/1.5)] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden">
+    <section id="servicios" className="relative py-16 px-6 min-h-[60vh] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden">
 
       <BrushBackground />
 
