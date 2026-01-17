@@ -5,7 +5,12 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Banner.css';
 
+// 1. IMPORTAR EL HOOK
+import { useTranslation } from 'react-i18next';
+
 const BannerPrincipal = () => {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({
@@ -30,7 +35,8 @@ const BannerPrincipal = () => {
           data-aos="fade-down"
           data-aos-delay="200"
         >
-          Mecánica Naval & Mantenimiento
+          {/* TEXTO TRADUCIDO */}
+          {t('banner_subtitle')}
         </span>
 
         <h1
@@ -38,7 +44,8 @@ const BannerPrincipal = () => {
           data-aos="fade-up"
           data-aos-delay="350"
         >
-          Servicio Profesional para tu Embarcación
+          {/* TEXTO TRADUCIDO */}
+          {t('banner_title')}
         </h1>
 
         <div className="hero-buttons">
@@ -49,7 +56,8 @@ const BannerPrincipal = () => {
             data-aos="zoom-in"
             data-aos-delay="550"
           >
-            <FaTools /> Nuestros Servicios
+            {/* TEXTO TRADUCIDO */}
+            <FaTools /> {t('banner_btn_services')}
           </Link>
 
           <Link
@@ -58,7 +66,8 @@ const BannerPrincipal = () => {
             data-aos="zoom-in"
             data-aos-delay="700"
           >
-            <FaShip /> Navega a la Galeria
+            {/* TEXTO TRADUCIDO */}
+            <FaShip /> {t('banner_btn_gallery')}
           </Link>
 
         </div>

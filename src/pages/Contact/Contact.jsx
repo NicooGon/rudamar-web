@@ -5,6 +5,10 @@ import {
   FaClock,
   FaDirections,
   FaPaperPlane,
+  FaUser,       // Icono Nombre/Apellido
+  FaPhoneAlt,   // Icono Teléfono
+  FaEnvelope,   // Icono Email
+  FaCommentDots // Icono Mensaje
 } from "react-icons/fa";
 import {
   AlertDialog,
@@ -14,7 +18,10 @@ import {
   AlertDialogCancel,
 } from "../../components/Alert/Alert.jsx";
 
-// Importamos el CSS para el diseño del mapa y el formulario
+// 1. IMPORTAR HOOK DE TRADUCCIÓN
+import { useTranslation } from 'react-i18next';
+
+// Importamos el CSS
 import "./Contact.css";
 
 export default function ContactPage() {
@@ -24,6 +31,9 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({
@@ -36,11 +46,10 @@ export default function ContactPage() {
   return (
     <section
       id="contactanos"
-      // FONDO EXACTO SEGÚN TU CÓDIGO
       className="relative w-full overflow-hidden flex items-center justify-center py-16 lg:py-24 bg-gradient-to-b from-sky-200 via-[#5c86c4] to-[#2c3e50]"
     >
       
-      {/* OLA DE TRANSICIÓN SUPERIOR (SVG) - EXACTA */}
+      {/* OLA DE TRANSICIÓN SUPERIOR */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180 z-0">
         <svg
           className="relative block w-[calc(100%+1.3px)] h-[60px] sm:h-[100px]"
@@ -56,16 +65,15 @@ export default function ContactPage() {
         </svg>
       </div>
 
-      {/* ELEMENTOS DECORATIVOS DE FONDO - EXACTOS */}
+      {/* ELEMENTOS DECORATIVOS DE FONDO */}
       <div className="absolute top-1/4 left-10 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-10 w-48 h-48 bg-sky-300 opacity-10 rounded-full blur-3xl"></div>
 
-      {/* --- NUEVO CONTENIDO INTERNO (Map First Layout) --- */}
+      {/* --- CONTENIDO PRINCIPAL --- */}
       <div className="contact-card" data-aos="fade-up">
         
-        {/* COLUMNA IZQUIERDA: MAPA A PANTALLA COMPLETA */}
+        {/* COLUMNA IZQUIERDA: MAPA */}
         <div className="map-column">
-          {/* Iframe ocupando todo el alto */}
           <iframe
             title="Ubicación Rudamar"
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4656.923372868926!2d-4.473338597942474!3d36.69376887810722!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f9fc0e20734f%3A0x33a1948d7148b2b2!2sRudamar-Spain!5e0!3m2!1ses!2sve!4v1768516642354!5m2!1ses!2sve"
@@ -74,77 +82,98 @@ export default function ContactPage() {
             loading="lazy"
           />
 
-          {/* Tarjeta Flotante: SOLO HORARIO (Como pediste) */}
+          {/* Tarjeta Flotante: HORARIO */}
           <div className="floating-hours" data-aos="fade-right" data-aos-delay="200">
             <div className="hours-icon"><FaClock /></div>
             <div className="hours-text">
-              <h4>Horario Taller</h4>
+              <h4>{t('map_hours_title')}</h4>
               <p>8:00 - 18:00 (L-V)</p>
             </div>
           </div>
 
-          {/* Botón Flotante "Ir Ahora" */}
+          {/* Botón Flotante */}
           <a href="https://maps.app.goo.gl/jdvHxRb28WD3Kykb7" target="_blank" rel="noopener noreferrer" className="map-overlay-btn">
-             <FaDirections /> Cómo llegar
+             <FaDirections /> {t('map_btn_directions')}
           </a>
         </div>
 
-        {/* COLUMNA DERECHA: FORMULARIO MEJORADO */}
+        {/* COLUMNA DERECHA: FORMULARIO */}
         <div className="form-column">
           <div className="form-header">
-            <h3>CONTACTANOS</h3>
-            <p>Cuéntanos qué necesitas y te responderemos hoy mismo.</p>
+            <h3>{t('contact_header')}</h3>
+            <p>{t('contact_sub')}</p>
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); setIsOpen(true); }}>
+            
             <div className="form-grid-row">
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                  className="modern-input"
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="Apellido"
-                  value={apellido}
-                  onChange={(e) => setApellido(e.target.value)}
-                  className="modern-input"
-                  required
-                />
+                {/* Nombre */}
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    placeholder={t('form_name')}
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    className="modern-input"
+                    required
+                  />
+                  <FaUser className="input-icon" />
+                </div>
+                
+                {/* Apellido */}
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    placeholder={t('form_lastname')}
+                    value={apellido}
+                    onChange={(e) => setApellido(e.target.value)}
+                    className="modern-input"
+                    required
+                  />
+                  <FaUser className="input-icon" />
+                </div>
             </div>
 
-            <input
-              type="tel"
-              placeholder="Teléfono móvil"
-              value={telefono}
-              onChange={(e) => setTelefono(e.target.value)}
-              className="modern-input"
-              required
-            />
+            {/* Teléfono */}
+            <div className="input-wrapper">
+               <input
+                type="tel"
+                placeholder={t('form_phone')}
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                className="modern-input"
+                required
+              />
+              <FaPhoneAlt className="input-icon" />
+            </div>
 
-            <input
-              type="email"
-              placeholder="Correo electrónico"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="modern-input"
-              required
-            />
+            {/* Email */}
+            <div className="input-wrapper">
+               <input
+                type="email"
+                placeholder={t('form_email')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="modern-input"
+                required
+              />
+              <FaEnvelope className="input-icon" />
+            </div>
 
-            <textarea
-              rows={4}
-              placeholder="Detalles de la reparación o servicio..."
-              value={mensaje}
-              onChange={(e) => setMensaje(e.target.value)}
-              className="modern-input"
-              style={{resize: 'none'}}
-            />
+            {/* Mensaje */}
+            <div className="input-wrapper">
+               <textarea
+                rows={4}
+                placeholder={t('form_message')}
+                value={mensaje}
+                onChange={(e) => setMensaje(e.target.value)}
+                className="modern-input"
+              />
+              <FaCommentDots className="input-icon textarea-icon" />
+            </div>
 
             <button type="submit" className="modern-btn">
-              <FaPaperPlane /> Enviar Solicitud
+              <FaPaperPlane /> {t('form_btn_send')}
             </button>
           </form>
         </div>
@@ -157,15 +186,15 @@ export default function ContactPage() {
               ✓
             </div>
             <AlertDialogTitle className="text-xl font-bold text-[#2c3e50]">
-              ¡Recibido!
+              {t('alert_received')}
             </AlertDialogTitle>
             <AlertDialogDescription className="text-gray-500 mt-2 text-sm">
-              Gracias por escribirnos. Revisaremos tu caso lo antes posible.
+              {t('alert_msg')}
             </AlertDialogDescription>
           </div>
           <div className="flex justify-center mt-6">
             <AlertDialogCancel className="bg-slate-100 hover:bg-slate-200 text-slate-700 border-0 transition px-8 py-2 rounded-full font-bold text-sm">
-              Cerrar
+              {t('alert_close')}
             </AlertDialogCancel>
           </div>
         </AlertDialogContent>

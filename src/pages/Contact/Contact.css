@@ -4,7 +4,6 @@
 .contact-section {
   position: relative;
   width: 100%;
-  /* Gradiente marino suave */
   background: linear-gradient(180deg, #bae6fd 0%, #5c86c4 40%, #1a252f 100%);
   padding: 100px 20px 80px;
   overflow: hidden;
@@ -34,27 +33,27 @@
   opacity: 0.4;
 }
 
-/* --- TARJETA PRINCIPAL (GRID) --- */
+/* --- TARJETA PRINCIPAL --- */
 .contact-card {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 1100px; /* Un poco más compacto */
+  max-width: 1100px;
   background-color: #ffffff;
   border-radius: 24px;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5); /* Sombra profunda */
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5);
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr; /* Mapa más grande que el formulario */
+  grid-template-columns: 1.1fr 0.9fr;
   overflow: hidden;
   min-height: 600px;
 }
 
-/* --- COLUMNA IZQUIERDA: MAPA INMERSIVO --- */
+/* --- COLUMNA IZQUIERDA: MAPA --- */
 .map-column {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 400px; /* Altura mínima en móvil */
+  min-height: 400px;
   background-color: #e2e8f0;
 }
 
@@ -62,11 +61,10 @@
   width: 100%;
   height: 100%;
   border: 0;
-  filter: grayscale(10%) contrast(1.1); /* Mapa con estilo */
+  filter: grayscale(10%) contrast(1.1);
   display: block;
 }
 
-/* Tarjeta de Horario Flotante (Glassmorphism) */
 .floating-hours {
   position: absolute;
   bottom: 25px;
@@ -84,27 +82,10 @@
   z-index: 20;
 }
 
-.hours-icon {
-  font-size: 1.5rem;
-  color: #5c86c4;
-}
+.hours-icon { font-size: 1.5rem; color: #5c86c4; }
+.hours-text h4 { margin: 0; font-size: 0.8rem; text-transform: uppercase; color: #888; font-weight: 700; }
+.hours-text p { margin: 0; font-size: 1rem; font-weight: 700; color: #2c3e50; }
 
-.hours-text h4 {
-  margin: 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: #888;
-  font-weight: 700;
-}
-
-.hours-text p {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2c3e50;
-}
-
-/* Botón flotante "Ir Ahora" en el mapa */
 .map-overlay-btn {
   position: absolute;
   top: 25px;
@@ -117,9 +98,7 @@
   font-size: 0.8rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex; align-items: center; gap: 6px;
   transition: transform 0.2s;
   z-index: 20;
 }
@@ -147,24 +126,62 @@
   margin-bottom: 30px;
 }
 
-/* Inputs mejorados */
+/* --- INPUTS CON ICONOS (NUEVO) --- */
+
+/* Contenedor relativo para posicionar el icono */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px; /* Espacio entre inputs */
+}
+
+/* El icono flotante */
+.input-icon {
+  position: absolute;
+  left: 16px; /* Distancia desde la izquierda */
+  top: 50%;
+  transform: translateY(-50%); /* Centrado vertical perfecto */
+  color: #94a3b8; /* Gris suave */
+  font-size: 1rem;
+  pointer-events: none; /* Para que el clic pase al input */
+  z-index: 5;
+}
+
+/* Icono especial para textarea (arriba) */
+.input-icon.textarea-icon {
+  top: 18px;
+  transform: none;
+}
+
+/* Estilo base del input */
 .modern-input {
   width: 100%;
   background-color: #f8fafc;
-  border: 1px solid #e2e8f0; /* Borde muy sutil */
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 14px 18px;
+  padding: 14px 18px 14px 45px; /* 45px a la izquierda para dejar sitio al icono */
   font-size: 0.95rem;
   outline: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: 15px;
+  color: #334155;
 }
 
 .modern-input:focus {
   background-color: #fff;
   border-color: #5c86c4;
-  box-shadow: 0 4px 12px rgba(92, 134, 196, 0.1); /* Sombra suave al enfocar */
+  box-shadow: 0 4px 12px rgba(92, 134, 196, 0.1);
   transform: translateY(-1px);
+}
+
+/* Cuando el input tiene foco, el icono se vuelve azul */
+.modern-input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+  color: #5c86c4;
+}
+
+textarea.modern-input {
+  resize: none;
+  min-height: 120px;
 }
 
 .form-grid-row {
@@ -185,10 +202,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: all 0.3s;
 }
 
@@ -204,20 +218,21 @@
     grid-template-columns: 1fr;
     max-width: 500px;
   }
-  
   .map-column {
-    height: 350px; /* Altura fija para el mapa en móvil */
+    height: 300px;
     min-height: auto;
-    order: 2; /* Mapa abajo en móvil (opcional) o arriba (1) */
+    order: 2; /* Mapa abajo en móvil */
   }
-
   .form-column {
-    padding: 30px 25px;
-    order: 1;
+    padding: 30px 20px;
+    order: 1; /* Formulario arriba en móvil */
   }
-  
   .floating-hours {
-    bottom: 15px; left: 15px; right: 15px; /* Ocupa ancho completo menos márgenes */
+    bottom: 15px; left: 15px; right: 15px;
     max-width: none;
+  }
+  .form-grid-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

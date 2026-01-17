@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Importamos el hook de traducción
 import './Layout.css';
 
 // 1. IMPORTAMOS EL LOGO
 import logoImg from '../../images/logo.png'; 
+
+// 2. IMPORTAMOS EL SWITCH DE IDIOMA
+import LanguageSwitch from '../LanguageSwitch/LanguageSwitch'; // Importamos el componente LanguageSwitch
+
+// 3. IMPORTAMOS EL COMPONENTE FOOTER Y LOS BOTONES FLOTANTES
+import Footer from '../../pages/VistaPrincipal/Footer'; // Importamos el nuevo Footer
+import FloatingButtons from '../FloatingButtons/FloatingButtons'; // Importamos los FloatingButtons
 
 import { 
   FaPhoneAlt, FaWhatsapp, FaEnvelope, FaShip, 
@@ -15,6 +23,9 @@ const Layout = ({ children }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
+  
+  // Usamos el hook de traducción
+  const { t } = useTranslation(); // Inicializamos la traducción
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
@@ -101,16 +112,20 @@ const Layout = ({ children }) => {
         </div>
         
         <ul className="sidebar-links">
-          <li><Link to="/" onClick={closeSidebar}>Inicio <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/Historia" onClick={closeSidebar}>Trayectoria <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/servicios" onClick={closeSidebar}>Servicios <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/galeria" onClick={closeSidebar}>Galeria <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/tienda" onClick={closeSidebar}>Tienda <FaChevronRight size={12}/></Link></li>
+          {/* Usamos t() para traducir los enlaces del sidebar */}
+          <li><Link to="/" onClick={closeSidebar}>{t('nav_inicio')} <FaChevronRight size={12}/></Link></li>
+          <li><Link to="/Historia" onClick={closeSidebar}>{t('nav_trayectoria')} <FaChevronRight size={12}/></Link></li>
+          <li><Link to="/servicios" onClick={closeSidebar}>{t('nav_servicios')} <FaChevronRight size={12}/></Link></li>
+          <li><Link to="/galeria" onClick={closeSidebar}>{t('nav_galeria')} <FaChevronRight size={12}/></Link></li>
+          {/* Agregamos el switch de idioma al menú móvil también si lo deseas, o déjalo solo en desktop */}
+          <li style={{marginTop: '20px', paddingLeft: '20px'}}>
+             <LanguageSwitch />
+          </li>
         </ul>
 
         <div className="sidebar-footer">
            <button className="btn-sidebar-action">
-             <FaShip style={{marginRight: '8px'}}/> Contactos
+             <FaShip style={{marginRight: '8px'}}/> {t('btn_contacto')}
            </button>
         </div>
       </aside>
@@ -136,28 +151,24 @@ const Layout = ({ children }) => {
           {/* Grupo Contacto (SOLO ESCRITORIO) */}
           <div className="contact-group-desktop">
             
-            <div className="info-item">
-              <div className="icon-box"><FaPhoneAlt /></div>
-              <div className="info-text">
-                <a
-                  href="tel:+34686794141"
-                  className="label"
-                >
-                  Teléfono
-                </a>
-              </div>
-            </div>
+            {/* 1. AQUÍ PONEMOS EL SWITCH (A la izquierda del primer info-item) */}
+            <LanguageSwitch />
 
             <div className="info-item">
-              <div className="icon-box"><FaWhatsapp /></div>
+              <div className="icon-box">
+                <FaWhatsapp />
+              </div>
               <div className="info-text">
+                <span className="label">Whatsapp</span>
+              
                 <a
                   href="https://wa.me/34686794141?text=Hola,%20quiero%20información"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="label"
+                  className="value"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
                 >
-                  Whatsapp
+                  +34 686 79 41 41
                 </a>
               </div>
             </div>
@@ -168,14 +179,17 @@ const Layout = ({ children }) => {
                 <a
                   href="mailto:rudacid@yahoo.es"
                   className="label"
+                  style={{ textDecoration: 'none', color: 'inherit', fontWeight: 'bold' }}
                 >
                   Email
                 </a>
+                <span className="value" style={{fontSize: '0.9rem'}}>rudacid@yahoo.es</span>
               </div>
             </div>
 
             <button className="btn-presupuesto">
-              Navegar <FaShip />
+              {/* Usamos t() para traducir el botón */}
+              {t('btn_presupuesto')} <FaShip />
             </button>
           </div>
 
@@ -192,11 +206,11 @@ const Layout = ({ children }) => {
       <nav className="main-nav">
         <div className="container">
           <ul className="nav-list">
-            <li className="nav-item active"><Link to="/">Inicio</Link></li>
-            <li className="nav-item"><Link to="/Historia">Trayectoria</Link></li>
-            <li className="nav-item"><Link to="/servicios">Servicios</Link></li>
-            <li className="nav-item"><Link to="/tienda">Tienda</Link></li>
-            <li className="nav-item"><Link to="/galeria">Galería</Link></li>
+            {/* Usamos t() para traducir los enlaces del navbar */}
+            <li className="nav-item active"><Link to="/">{t('nav_inicio')}</Link></li>
+            <li className="nav-item"><Link to="/Historia">{t('nav_trayectoria')}</Link></li>
+            <li className="nav-item"><Link to="/servicios">{t('nav_servicios')}</Link></li>
+            <li className="nav-item"><Link to="/galeria">{t('nav_galeria')}</Link></li>
           </ul>
         </div>
       </nav>
