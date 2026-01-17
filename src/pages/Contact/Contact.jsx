@@ -2,14 +2,8 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaClock, FaDirections, FaPaperPlane } from "react-icons/fa";
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogCancel,
-} from "../../components/Alert/Alert.jsx";
-import '../../index.css';
+import { AlertDialog, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel } from "../../components/Alert/Alert.jsx";
+import { useTranslation } from 'react-i18next';
 
 export default function ContactPage() {
   const [nombre, setNombre] = useState("");
@@ -23,18 +17,14 @@ export default function ContactPage() {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <section
       id="contactanos"
       className="relative w-full py-20 bg-gradient-to-b from-sky-200 via-sky-200 to-slate-700 overflow-hidden"
     >
-      <div
-        className="relative z-10 mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden
-                   grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]
-                   w-[90%] max-w-[480px] md:max-w-3xl lg:max-w-5xl xl:max-w-7xl"
-        data-aos="fade-up"
-      >
-        {/* MAPA */}
+      <div className="relative z-10 mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] w-[90%] max-w-[480px] md:max-w-3xl lg:max-w-5xl xl:max-w-7xl" data-aos="fade-up">
         <div className="relative h-[360px] lg:min-h-[600px]">
           <iframe
             title="Ubicación Rudamar"
@@ -51,7 +41,7 @@ export default function ContactPage() {
             <FaClock className="text-[#5c86c4] text-xl" />
             <div>
               <p className="text-[11px] uppercase text-gray-400 font-bold tracking-wider">
-                Horario Taller
+                {t('map_hours_title')}
               </p>
               <p className="font-bold text-gray-800 text-sm">
                 8:00 - 18:00 (L-V)
@@ -65,18 +55,17 @@ export default function ContactPage() {
             rel="noopener noreferrer"
             className="absolute top-5 right-5 bg-white px-4 py-2 rounded-full shadow-md text-xs font-bold flex items-center gap-2 hover:scale-105 transition"
           >
-            <FaDirections /> Cómo llegar
+            <FaDirections /> {t('map_btn_directions')}
           </a>
         </div>
 
-        {/* FORMULARIO */}
         <div className="p-10 flex flex-col justify-center">
           <div className="mb-8">
             <h3 className="text-2xl font-extrabold text-[#2c3e50] uppercase tracking-wide">
-              Contactanos
+              {t('contact_header')}
             </h3>
             <p className="text-gray-500 mt-2 text-sm">
-              Cuéntanos qué necesitas y te responderemos hoy mismo.
+              {t('contact_sub')}
             </p>
           </div>
 
@@ -90,59 +79,58 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
-                placeholder="Nombre"
+                placeholder={t('form_name')}
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 required
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
               />
               <input
                 type="text"
-                placeholder="Apellido"
+                placeholder={t('form_lastname')}
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
                 required
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
               />
             </div>
 
             <input
               type="tel"
-              placeholder="Teléfono móvil"
+              placeholder={t('form_phone')}
               value={telefono}
               onChange={(e) => setTelefono(e.target.value)}
               required
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
             />
 
             <input
               type="email"
-              placeholder="Correo electrónico"
+              placeholder={t('form_email')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 placeholder:text-gray-450"
             />
 
             <textarea
               rows={4}
-              placeholder="Detalles de la reparación o servicio..."
+              placeholder={t('form_message')}
               value={mensaje}
               onChange={(e) => setMensaje(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 resize-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm outline-none transition focus:bg-white focus:border-[#5c86c4] focus:ring-2 focus:ring-[#5c86c4]/20 resize-none placeholder:text-gray-450"
             />
 
             <button
               type="submit"
               className="w-full mt-2 py-4 bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-white font-bold uppercase rounded-lg flex items-center justify-center gap-3"
             >
-              <FaPaperPlane /> Enviar solicitud
+              <FaPaperPlane /> {t('form_btn_send')}
             </button>
           </form>
         </div>
       </div>
 
-      {/* ALERT DIALOG */}
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogContent className="bg-white p-6 rounded-2xl shadow-2xl border-0 max-w-sm mx-auto">
           <div className="text-center">
@@ -150,15 +138,15 @@ export default function ContactPage() {
               ✓
             </div>
             <AlertDialogTitle className="text-xl font-bold text-[#2c3e50]">
-              ¡Recibido!
+              {t('alert_received')}
             </AlertDialogTitle>
             <AlertDialogDescription className="text-gray-500 mt-2 text-sm">
-              Gracias por escribirnos. Revisaremos tu caso lo antes posible.
+              {t('alert_msg')}
             </AlertDialogDescription>
           </div>
           <div className="flex justify-center mt-6">
             <AlertDialogCancel className="bg-slate-100 hover:bg-slate-200 px-8 py-2 rounded-full font-bold text-sm">
-              Cerrar
+              {t('alert_close')}
             </AlertDialogCancel>
           </div>
         </AlertDialogContent>
