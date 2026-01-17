@@ -4,25 +4,21 @@ import Layout from '../../components/Layout/Layout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import './Galeria.css';
 
+// 1. IMPORTAR HOOK
+import { useTranslation } from 'react-i18next';
+
 import headerBg from '../../images/banner.jpeg'; 
 import Footer from '../VistaPrincipal/Footer.jsx'
 
 const Galeria = () => {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
+
   const [imagesList, setImagesList] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(''); 
   const [selectedItem, setSelectedItem] = useState(null); 
-
-  // --- DICCIONARIO ACTUALIZADO (Con Mayúsculas) ---
-  // Las claves deben ser IGUALES al nombre de tu carpeta
-  const categoryLabels = {
-    '1NAUTICAS': 'Neumáticas y PVC',
-    '2MOTORES': 'Motores',
-    '3TALLER': 'Nuestro Taller',
-    '4PADDLE_SURF': 'Paddle Surf',
-    '5ANTES_DESPUES': 'Antes y Después'
-  };
 
   useEffect(() => {
     const mediaGlob = import.meta.glob('../../images/Galeria/**/*.{png,jpg,jpeg,svg,mp4,webm}', { eager: true });
@@ -74,11 +70,12 @@ const Galeria = () => {
 
   return (
     <Layout>
-      <PageHeader title="Nuestra Galería" bgImage={headerBg} />
+      {/* TÍTULO TRADUCIDO */}
+      <PageHeader title={t('gallery_page_title')} bgImage={headerBg} />
 
       <div className="gallery-container container">
         
-        {/* BOTONES DE FILTRO */}
+        {/* BOTONES DE FILTRO TRADUCIDOS */}
         <div className="gallery-filters">
           {categories.map((cat, index) => (
             <button 
@@ -86,11 +83,9 @@ const Galeria = () => {
               className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
               onClick={() => handleFilterClick(cat)}
             >
-              {/* --- LA MAGIA ESTÁ AQUÍ --- */}
-              {/* 1. Busca en el diccionario. 
-                  2. Si no encuentra, toma el nombre de la carpeta y LE BORRA LOS NÚMEROS iniciales. 
-                     Ej: "3TALLER" se convierte en "TALLER" automáticamente. */}
-              {categoryLabels[cat] || cat.replace(/^[0-9]+/, '')}
+              {/* TRUCO: Usamos la clave 'cat_' + el nombre de tu carpeta para buscar la traducción */}
+              {/* Ej: Si la carpeta es '1NAUTICAS', buscará t('cat_1NAUTICAS') */}
+              {t(`cat_${cat}`, { defaultValue: cat.replace(/^[0-9]+/, '') })}
             </button>
           ))}
         </div>
@@ -113,7 +108,8 @@ const Galeria = () => {
               )}
 
               <div className="gallery-overlay">
-                <span>Ver {item.type === 'video' ? 'Video' : 'Imagen'}</span>
+                {/* TEXTO TRADUCIDO AL HACER HOVER */}
+                <span>{item.type === 'video' ? t('gallery_view_video') : t('gallery_view_image')}</span>
               </div>
             </div>
           ))}
@@ -121,7 +117,7 @@ const Galeria = () => {
 
         {filteredImages.length === 0 && (
             <div style={{textAlign: 'center', width: '100%', padding: '40px'}}>
-              <p>Cargando galería...</p>
+              <p>{t('gallery_loading')}</p>
             </div>
         )}
 

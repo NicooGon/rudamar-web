@@ -76,6 +76,68 @@ const resources = {
         "Restauración segura y eficiente"
       ],
 
+      // PÁGINA RESEÑAS & TRAYECTORIA
+      "reviews_page_title": "Reseñas y Trayectoria",
+      
+      // Sección Historia
+      "hist_years_text": "Años de Experiencia",
+      "hist_subtitle": "Mecánica Naval Profesional",
+      "hist_title": "Un poco de nuestra historia",
+      "hist_desc": "El Taller RUDAMAR fue fundado con la visión de ofrecer un servicio náutico integral de la más alta calidad en la Costa del Sol. Nos especializamos en la reparación de embarcaciones neumáticas y semirrígidas.",
+      "hist_btn": "Contáctanos",
+
+      // Sección Showcase (Suzuki)
+      "showcase_subtitle": "Resultados Reales",
+      "showcase_title": "Experiencia y Prestigio",
+      "showcase_text_1": "En Rudamar, cada motor y cada casco cuentan una historia. Como esta reparación integral de un motor Suzuki, donde aplicamos nuestros protocolos más exigentes.",
+      "showcase_text_2": "Nuestro equipo técnico se mantiene en constante formación para dominar las últimas tecnologías en motores fueraborda y reparación de fibra.",
+      "showcase_list_1": "Reparaciones Garantizadas",
+      "showcase_list_2": "Materiales Homologados",
+      "showcase_list_3": "Servicio Oficial",
+
+      // Sección Grid de Reseñas
+      "reviews_section_title": "Lo que dicen nuestros clientes",
+      "reviews_btn_maps": "Ver todas las reseñas en Google Maps",
+
+      // Los testimonios (Para que también cambien de idioma)
+      "review_1_date": "hace 5 meses",
+      "review_1_text": "Valoración muy positiva: mi tabla estaba lista antes de tiempo. el precio por la reparación me parece el justo. Rubén muy amablemente nos ha dado una serie de indicaciones para cuidar la tabla que nunca nadie nos había dado. Lo recomiendo.",
+      
+      "review_2_date": "hace 4 meses",
+      "review_2_text": "Mi amigo Rubén me lo recomendó un gran amigo yeyo y a día de hoy como profesional y buena persona de 10 aparte una persona que no engaña a nadie en su profesión te aconseja y te dices las cosas claras sin engaños.",
+      
+      "review_3_date": "hace 5 meses",
+      "review_3_text": "Me los recomendó un amigo y no puedo estar más contento con la reparación. Bien hecha, en poco tiempo y a buen precio, y además te dan consejos sobre que hacer para que no te pase más. Una atención de 10!",
+
+      // SECCIÓN VALORES
+      "values_title": "Nuestros Valores",
+      
+      "val_tech_title": "Excelencia Técnica",
+      "val_tech_desc": "Comprometidos con la perfección técnica en cada reparación, utilizando materiales de primera calidad.",
+      
+      "val_trans_title": "Transparencia",
+      "val_trans_desc": "Valoramos la confianza. Diagnósticos claros y presupuestos sin sorpresas para cada cliente.",
+      
+      "val_advice_title": "Asesoría",
+      "val_advice_desc": "No solo reparamos, aconsejamos para el mejor mantenimiento de tu embarcación a largo plazo.",
+      
+      "val_commit_title": "Compromiso",
+      "val_commit_desc": "Tu seguridad en el mar es nuestra prioridad. Garantía y calidad en cada trabajo realizado.",
+      
+      // GALERÍA
+      "gallery_page_title": "Nuestra Galería",
+      "gallery_view_image": "Ver Imagen",
+      "gallery_view_video": "Ver Video",
+      "gallery_loading": "Cargando galería...",
+      
+      // Categorías de la Galería (Las claves deben coincidir con tus carpetas, pero en minúsculas y limpias si quieres, o usar un mapeo directo)
+      // Mapeo sugerido:
+      "cat_1NAUTICAS": "Neumáticas y PVC",
+      "cat_2MOTORES": "Motores",
+      "cat_3TALLER": "Nuestro Taller",
+      "cat_4PADDLE_SURF": "Paddle Surf",
+      "cat_5ANTES_DESPUES": "Antes y Después",
+
       "about_label": "Acerca de nosotros",
       "about_title_line1": "Taller de confianza",
       "about_title_line2": "en Málaga",
@@ -160,6 +222,67 @@ const resources = {
         "All sizes and models",
         "Safe and efficient restoration"
       ],
+
+      // REVIEWS & TRAJECTORY PAGE
+      "reviews_page_title": "Reviews and History",
+
+      // History Section
+      "hist_years_text": "Years of Experience",
+      "hist_subtitle": "Professional Naval Mechanics",
+      "hist_title": "A bit of our history",
+      "hist_desc": "The RUDAMAR Workshop was founded with the vision of offering the highest quality integral nautical service on the Costa del Sol. We specialize in the repair of inflatable and semi-rigid boats.",
+      "hist_btn": "Contact Us",
+
+      "gallery_page_title": "Our Gallery",
+      "gallery_view_image": "View Image",
+      "gallery_view_video": "View Video",
+      "gallery_loading": "Loading gallery...",
+      
+      // Gallery Categories
+      "cat_1NAUTICAS": "Inflatables & PVC",
+      "cat_2MOTORES": "Engines",
+      "cat_3TALLER": "Our Workshop",
+      "cat_4PADDLE_SURF": "Paddle Surf",
+      "cat_5ANTES_DESPUES": "Before & After",
+
+      // Showcase Section (Suzuki)
+      "showcase_subtitle": "Real Results",
+      "showcase_title": "Experience and Prestige",
+      "showcase_text_1": "At Rudamar, every engine and every hull tells a story. Like this comprehensive repair of a Suzuki engine, where we apply our most demanding protocols.",
+      "showcase_text_2": "Our technical team is constantly training to master the latest technologies in outboard motors and fiberglass repair.",
+      "showcase_list_1": "Guaranteed Repairs",
+      "showcase_list_2": "Approved Materials",
+      "showcase_list_3": "Official Service",
+
+      // Reviews Grid Section
+      "reviews_section_title": "What our clients say",
+      "reviews_btn_maps": "See all reviews on Google Maps",
+
+      // Testimonials translated
+      "review_1_date": "5 months ago",
+      "review_1_text": "Very positive assessment: my board was ready ahead of time. The price for the repair seems fair. Rubén very kindly gave us a series of indications to take care of the board that no one had ever given us. I recommend it.",
+
+      "review_2_date": "4 months ago",
+      "review_2_text": "My friend Rubén was recommended to me by a great friend Yeyo and today as a professional and a good person he is a 10. Besides being a person who does not deceive anyone in his profession, he advises you and tells you things clearly without deception.",
+
+      "review_3_date": "5 months ago",
+      "review_3_text": "A friend recommended them to me and I couldn't be happier with the repair. Well done, in a short time and at a good price, and they also give you advice on what to do so it doesn't happen again. 10/10 attention!",
+
+      "values_title": "Our Values",
+      
+      "val_tech_title": "Technical Excellence",
+      "val_tech_desc": "Committed to technical perfection in every repair, using top quality materials.",
+      
+      "val_trans_title": "Transparency",
+      "val_trans_desc": "We value trust. Clear diagnoses and budgets without surprises for every client.",
+      
+      "val_advice_title": "Advisory",
+      "val_advice_desc": "We don't just repair, we advise for the best long-term maintenance of your boat.",
+      
+      "val_commit_title": "Commitment",
+      "val_commit_desc": "Your safety at sea is our priority. Guarantee and quality in every job performed.",
+
+
 
 
       "about_label": "About Us",

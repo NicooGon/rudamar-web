@@ -3,7 +3,13 @@ import React from 'react';
 import { FaTools, FaSearch, FaHandshake, FaAward } from 'react-icons/fa';
 import './Reseñas.css';
 
+// 1. IMPORTAR EL HOOK
+import { useTranslation } from 'react-i18next';
+
 const Valores = () => {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
+
   return (
     <section className="values-section">
       <div className="container values-container">
@@ -12,11 +18,12 @@ const Valores = () => {
           className="values-title"
           data-aos="fade-up"
         >
-          Nuestros Valores
+          {t('values_title')}
         </h2>
 
         <div className="values-grid">
           
+          {/* VALOR 1: EXCELENCIA */}
           <div 
             className="value-card"
             data-aos="zoom-in"
@@ -29,12 +36,13 @@ const Valores = () => {
             >
               <FaTools />
             </div>
-            <h4>Excelencia Técnica</h4>
+            <h4>{t('val_tech_title')}</h4>
             <p>
-              Comprometidos con la perfección técnica en cada reparación, utilizando materiales de primera calidad.
+              {t('val_tech_desc')}
             </p>
           </div>
 
+          {/* VALOR 2: TRANSPARENCIA */}
           <div 
             className="value-card"
             data-aos="zoom-in"
@@ -47,12 +55,13 @@ const Valores = () => {
             >
               <FaSearch />
             </div>
-            <h4>Transparencia</h4>
+            <h4>{t('val_trans_title')}</h4>
             <p>
-              Valoramos la confianza. Diagnósticos claros y presupuestos sin sorpresas para cada cliente.
+              {t('val_trans_desc')}
             </p>
           </div>
 
+          {/* VALOR 3: ASESORÍA */}
           <div 
             className="value-card"
             data-aos="zoom-in"
@@ -65,12 +74,13 @@ const Valores = () => {
             >
               <FaHandshake />
             </div>
-            <h4>Asesoría</h4>
+            <h4>{t('val_advice_title')}</h4>
             <p>
-              No solo reparamos, aconsejamos para el mejor mantenimiento de tu embarcación a largo plazo.
+              {t('val_advice_desc')}
             </p>
           </div>
 
+          {/* VALOR 4: COMPROMISO */}
           <div 
             className="value-card"
             data-aos="zoom-in"
@@ -83,9 +93,9 @@ const Valores = () => {
             >
               <FaAward />
             </div>
-            <h4>Compromiso</h4>
+            <h4>{t('val_commit_title')}</h4>
             <p>
-              Tu seguridad en el mar es nuestra prioridad. Garantía y calidad en cada trabajo realizado.
+              {t('val_commit_desc')}
             </p>
           </div>
 
