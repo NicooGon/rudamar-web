@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// 1. IMPORTAR HOOK
+import { useTranslation } from 'react-i18next';
+
 function BrushBackground() {
   return (
     <div
@@ -50,6 +53,8 @@ function BrushBackground() {
 }
 
 export default function Services() {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({
@@ -68,54 +73,43 @@ export default function Services() {
         
         <div className="text-center mb-16" data-aos="fade-up" data-aos-delay="200">
           <h2 className="text-4xl font-bold text-gray-800">
-            Nuestros Servicios
+            {t('services_title')}
           </h2>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Más de 23 años de experiencia en la Costa del Sol ofreciendo
-            soluciones profesionales con garantía de calidad.
+            {t('services_desc')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          
+          {/* TARJETA 1: BOTES */}
           <div data-aos="zoom-in" data-aos-delay="400">
             <ServiceCard
               icon={GiBoatFishing}
-              title="Botes y Neumáticas"
-              items={[
-                "Hinchables, semirrígidos y desmontables",
-                "Reparación de pinchazos y rajas",
-                "Sustitución de flotadores",
-                "Trabajos en PVC",
-                "Cambio de válvulas",
-                "Colocación de accesorios",
-                "Limpieza de tubulares",
-              ]}
+              title={t('serv_boat_title')}
+              // returnObjects: true permite obtener el array completo del JSON
+              items={t('serv_boat_items', { returnObjects: true })}
             />
           </div>
 
+          {/* TARJETA 2: FIBRA */}
           <div data-aos="zoom-in" data-aos-delay="550">
             <ServiceCard
               icon={GiAutoRepair}
-              title="Fibra de Vidrio"
-              items={[
-                "Reparaciones en fibra de vidrio",
-                "Venta de consolas patroneras",
-                "Acabados profesionales y duraderos",
-              ]}
+              title={t('serv_fiber_title')}
+              items={t('serv_fiber_items', { returnObjects: true })}
             />
           </div>
 
+          {/* TARJETA 3: PADDLE SURF */}
           <div data-aos="zoom-in" data-aos-delay="700">
             <ServiceCard
               icon={MdOutlineSurfing}
-              title="Paddle Surf"
-              items={[
-                "Reparación de tablas de paddle surf",
-                "Todos los tamaños y modelos",
-                "Restauración segura y eficiente",
-              ]}
+              title={t('serv_paddle_title')}
+              items={t('serv_paddle_items', { returnObjects: true })}
             />
           </div>
+          
         </div>
       </div>
     </section>

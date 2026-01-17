@@ -2,12 +2,18 @@ import React from 'react';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaWhatsapp, FaInstagram, FaFacebookF, FaShip } from 'react-icons/fa';
 import './Footer.css';
 
+// 1. IMPORTAR EL HOOK DE TRADUCCIÓN
+import { useTranslation } from 'react-i18next';
+
 // Importa una imagen oscura de fondo (puede ser una del taller o el banner oscurecido)
 import footerBg from '../../images/banner.jpeg'; 
 // Importa tu logo si quieres usar imagen, o usa texto
 import logoImg from '../../images/logo.png'; 
 
 const Footer = () => {
+  // 2. USAR EL HOOK
+  const { t } = useTranslation();
+
   return (
     <footer className="footer-section" style={{ backgroundImage: `url(${footerBg})` }}>
       {/* Overlay oscuro para que el texto se lea bien sobre la imagen */}
@@ -17,32 +23,32 @@ const Footer = () => {
         
         {/* COLUMNA 1: MARCA Y LLAMADA A LA ACCIÓN */}
         <div className="footer-brand">
-            {/* Puedes usar img o texto */}
             <div className="footer-logo-area">
+                 {/* Si prefieres usar la imagen del logo: */}
+                 {/* <img src={logoImg} alt="Rudamar Logo" className="footer-logo-img" /> */}
                  <h2 className="brand-title">RUDAMAR</h2>
-                 <span className="brand-subtitle">Servicio Oficial Narwhal</span>
+                 <span className="brand-subtitle">{t('footer_subtitle')}</span>
             </div>
             
             <p className="brand-desc">
-                En nuestro taller nos caracterizamos por tener un equipo altamente cualificado. 
-                Ofrecemos soluciones integrales en mecánica naval, fibra de vidrio y mantenimiento de embarcaciones en la Costa del Sol.
+                {t('footer_desc')}
             </p>
 
             <a href="/contacto" className="btn-footer-action">
-                Solicitar Presupuesto <FaShip />
+                {t('footer_btn_quote')} <FaShip />
             </a>
         </div>
 
-        {/* COLUMNA 2: CONTACTO (Alineado a la derecha visualmente) */}
+        {/* COLUMNA 2: CONTACTO */}
         <div className="footer-contact">
-            <h3 className="footer-heading">Contacto</h3>
+            <h3 className="footer-heading">{t('footer_contact_heading')}</h3>
             <div className="heading-line"></div>
 
             <ul className="contact-list">
                 <li>
                     <div className="icon-wrap"><FaMapMarkerAlt /></div>
                     <div className="text-wrap">
-                        <span className="label">Dirección</span>
+                        <span className="label">{t('footer_label_address')}</span>
                         <p>Calle Diderot 15, Nave 165<br/>29004 Málaga, España</p>
                     </div>
                 </li>
@@ -50,7 +56,7 @@ const Footer = () => {
                 <li>
                     <div className="icon-wrap"><FaPhoneAlt /></div>
                     <div className="text-wrap">
-                        <span className="label">Teléfono</span>
+                        <span className="label">{t('footer_label_phone')}</span>
                         <p>928 417 651 - 625 195 905</p>
                     </div>
                 </li>
@@ -58,7 +64,7 @@ const Footer = () => {
                 <li>
                     <div className="icon-wrap"><FaEnvelope /></div>
                     <div className="text-wrap">
-                        <span className="label">Email</span>
+                        <span className="label">{t('footer_label_email')}</span>
                         <p>info@rudamar.com</p>
                     </div>
                 </li>
@@ -75,7 +81,7 @@ const Footer = () => {
 
       {/* BARRA INFERIOR COPYRIGHT */}
       <div className="footer-bottom">
-        <p>© 2026 Servicio Oficial RUDAMAR. Todos los derechos reservados.</p>
+        <p>{t('footer_copyright')}</p>
       </div>
     </footer>
   );
