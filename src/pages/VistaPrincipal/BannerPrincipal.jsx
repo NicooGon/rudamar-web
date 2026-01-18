@@ -50,15 +50,15 @@ const BannerPrincipal = () => {
 
         <div className="hero-buttons">
 
-          <Link
-            to="/servicios"
+          <a
+            href="#servicios"
             className="btn-hero btn-primary"
             data-aos="zoom-in"
             data-aos-delay="550"
           >
             {/* TEXTO TRADUCIDO */}
             <FaTools /> {t('banner_btn_services')}
-          </Link>
+          </a>
 
           <Link
             to="/galeria"

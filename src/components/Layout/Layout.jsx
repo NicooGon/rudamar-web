@@ -194,10 +194,10 @@ const Layout = ({ children }) => {
 
 
 
-            <button className="btn-presupuesto">
-              {/* Usamos t() para traducir el botón */}
+            <Link to="/galeria" className="btn-presupuesto">
+              {/* Usamos t() para traducir el texto */}
               {t('btn_presupuesto')} <FaShip />
-            </button>
+            </Link>
           </div>
 
           {/* Botón Hamburguesa (SOLO MÓVIL) */}
