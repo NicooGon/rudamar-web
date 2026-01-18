@@ -65,15 +65,15 @@ const Footer = () => {
                     <div className="icon-wrap"><FaEnvelope /></div>
                     <div className="text-wrap">
                         <span className="label">{t('footer_label_email')}</span>
-                        <p>info@rudamar.com</p>
+                        <p>rudamarspain@gmail.com</p>
                     </div>
                 </li>
             </ul>
 
             <div className="footer-socials">
-                <a href="#" className="social-btn"><FaWhatsapp /></a>
-                <a href="#" className="social-btn"><FaInstagram /></a>
-                <a href="#" className="social-btn"><FaFacebookF /></a>
+                <a href="https://wa.me/34686794141" className="social-btn"><FaWhatsapp /></a>
+                <a href="https://www.instagram.com/rudamar_spain_/" className="social-btn"><FaInstagram /></a>
+                <a href="https://www.facebook.com/share/14SiM2fDXZz/" className="social-btn"><FaFacebookF /></a>
             </div>
         </div>
 

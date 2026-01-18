@@ -115,7 +115,7 @@ const Layout = ({ children }) => {
           {/* Usamos t() para traducir los enlaces del sidebar */}
           <li><Link to="/" onClick={closeSidebar}>{t('nav_inicio')} <FaChevronRight size={12}/></Link></li>
           <li><Link to="/Historia" onClick={closeSidebar}>{t('nav_trayectoria')} <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/servicios" onClick={closeSidebar}>{t('nav_servicios')} <FaChevronRight size={12}/></Link></li>
+          <li><a href="#servicios" onClick={closeSidebar}>{t('nav_servicios')} <FaChevronRight size={12}/></a></li>
           <li><Link to="/galeria" onClick={closeSidebar}>{t('nav_galeria')} <FaChevronRight size={12}/></Link></li>
           {/* Agregamos el switch de idioma al menú móvil también si lo deseas, o déjalo solo en desktop */}
           <li style={{marginTop: '20px', paddingLeft: '20px'}}>
@@ -174,18 +174,25 @@ const Layout = ({ children }) => {
             </div>
 
             <div className="info-item">
-              <div className="icon-box"><FaEnvelope /></div>
+              <div className="icon-box">
+                <FaEnvelope  />
+              </div>
               <div className="info-text">
+                <span className="label">Email</span>
+              
                 <a
-                  href="mailto:rudacid@yahoo.es"
-                  className="label"
-                  style={{ textDecoration: 'none', color: 'inherit', fontWeight: 'bold' }}
+                  href="https://wa.me/34686794141?text=Hola,%20quiero%20información"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="value"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
                 >
-                  Email
+                  rudamarspain@gmail.com
                 </a>
-                <span className="value" style={{fontSize: '0.9rem'}}>rudacid@yahoo.es</span>
               </div>
             </div>
+
+
 
             <button className="btn-presupuesto">
               {/* Usamos t() para traducir el botón */}
@@ -209,7 +216,7 @@ const Layout = ({ children }) => {
             {/* Usamos t() para traducir los enlaces del navbar */}
             <li className="nav-item active"><Link to="/">{t('nav_inicio')}</Link></li>
             <li className="nav-item"><Link to="/Historia">{t('nav_trayectoria')}</Link></li>
-            <li className="nav-item"><Link to="/servicios">{t('nav_servicios')}</Link></li>
+            <li className="nav-item"><a href="#servicios">{t('nav_servicios')}</a></li>
             <li className="nav-item"><Link to="/galeria">{t('nav_galeria')}</Link></li>
           </ul>
         </div>

@@ -12,6 +12,7 @@ import Footer from '../VistaPrincipal/Footer.jsx';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import FloatingButtons from '../../components/FloatingButtons/FloatingButtons.jsx';
 
 const Galeria = () => {
   // 2. USAR EL HOOK
@@ -165,7 +166,7 @@ const Galeria = () => {
           </div>
         </div>
       )}
-
+      <FloatingButtons />
       <Footer />
     </Layout>
   );

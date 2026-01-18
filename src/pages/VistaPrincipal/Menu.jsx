@@ -6,6 +6,7 @@ import Ubicacion from '../../components/Ubicacion/Ubicacion';
 import BannerPrincipal from './BannerPrincipal.jsx';
 import ContactPage from '../Contact/Contact.jsx';
 import Footer from './Footer.jsx'
+import FloatingButtons from '../../components/FloatingButtons/FloatingButtons.jsx';
 
 
 export const Menu = () => {
@@ -22,6 +23,7 @@ export const Menu = () => {
         <ContactPage />
 
       </div>
+      <FloatingButtons />
       <Footer />
     </Layout>
   );

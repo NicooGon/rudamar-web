@@ -38,7 +38,7 @@ const FloatingButtons = () => {
       
       {/* BOTÓN WHATSAPP (Siempre visible) */}
       <a 
-        href="https://wa.me/34686794141" // TU NÚMERO AQUÍ
+        href="https://wa.me/34686794141?text=Hola,%20quiero%20información%20sobre%20Rudamar" // TU NÚMERO AQUÍ
         target="_blank" 
         rel="noopener noreferrer" 
         className="float-btn whatsapp-btn"

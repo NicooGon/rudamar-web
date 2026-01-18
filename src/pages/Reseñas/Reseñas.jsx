@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import headerBg from '../../images/banner.jpeg'; 
 import tallerImg from '../../images/banner.jpeg'; 
 import suzukiImg from '../../images/Galeria/suzuki.jpg'; 
+import FloatingButtons from '../../components/FloatingButtons/FloatingButtons.jsx';
 
 const Reseñas = () => {
   // 2. USAR EL HOOK
@@ -175,13 +176,14 @@ const Reseñas = () => {
           </div>
 
           <div style={{ textAlign: 'center' }}>
-            <a href="https://maps.app.goo.gl/ChIJT3MgDvz5cg0RsrJIcY2UoTM" target="_blank" rel="noopener noreferrer" className="btn-google-maps">
+            <a href="https://www.google.com/maps/place/Rudamar-Spain/@36.6933417,-4.4748747,17z/data=!3m1!4b1!4m6!3m5!1s0xd72f9fc0e20734f:0x33a1948d7148b2b2!8m2!3d36.6933417!4d-4.4748747!16s%2Fg%2F11g01rsc5r?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D" target="_blank" rel="noopener noreferrer" className="btn-google-maps">
               <FaMapMarkerAlt color="#EA4335"/> {t('reviews_btn_maps')}
             </a>
           </div>
 
         </div>
       </section>
+      <FloatingButtons />
       <Footer />
     </Layout>
   );
