@@ -7,7 +7,7 @@ import BannerPrincipal from './BannerPrincipal.jsx';
 import ContactPage from '../Contact/Contact.jsx';
 import Footer from './Footer.jsx'
 import FloatingButtons from '../../components/FloatingButtons/FloatingButtons.jsx';
-
+import BeforeAfterPreview from '../../components/BeforeAfterPreview/BeforeAfterPreview';
 
 export const Menu = () => {
   return (
@@ -20,6 +20,7 @@ export const Menu = () => {
         <div className="bubble-container" />
 
         <Services />
+        <BeforeAfterPreview />
         <ContactPage />
 
       </div>

@@ -69,6 +69,18 @@ const resources = {
         "Acabados profesionales y duraderos"
       ],
 
+      "gallery_page_title": "Nuestra Galería",
+      "gallery_loading": "Cargando imágenes...",
+      "gallery_view_video": "Ver Video",
+      "gallery_view_image": "Ver Imagen",
+
+      // GALERÍA - Categorías Fijas
+      "cat_antes_despues": "Antes y Después", // Principal
+      "cat_nauticas": "Botes y Neumáticas",
+      "cat_motores": "Motores",
+      "cat_taller": "Nuestro Taller",
+      "cat_paddle": "Paddle Surf",
+
       "serv_paddle_title": "Paddle Surf",
       "serv_paddle_items": [
         "Reparación de tablas de paddle surf",
@@ -148,6 +160,13 @@ const resources = {
       "about_check_3": "Servicio seguro, profesional y duradero",
       "about_btn_contact": "Contáctenos",
       "about_years_exp": "Años de experiencia",
+
+      "ba_preview_subtitle": "Restauración Impecable",
+      "ba_preview_title": "Devolvemos la vida a tu embarcación",
+      "ba_preview_desc": "No te conformes con que te lo cuenten. Desliza y comprueba tú mismo la calidad de nuestros acabados. De lo desgastado a lo reluciente en un solo paso.",
+      "ba_preview_btn": "Ver Galería Completa",
+      "ba_label_before": "Antes",
+      "ba_label_after": "Después",
       // ... aquí irás agregando todos tus textos en español
     }
   },
@@ -160,12 +179,31 @@ const resources = {
       "btn_presupuesto": "Set Sail",
       "btn_contacto": "Contact",
 
+      "ba_preview_subtitle": "Flawless Restoration",
+      "ba_preview_title": "We bring your boat back to life",
+      "ba_preview_desc": "Don't just take our word for it. Slide and see for yourself the quality of our finishes. From worn out to shining in just one step.",
+      "ba_preview_btn": "View Full Gallery",
+      "ba_label_before": "Before",
+      "ba_label_after": "After",
+
       // BANNER SECTION
       "banner_subtitle": "Naval Mechanics & Maintenance",
       "banner_title": "Professional Service for your Boat",
       "banner_btn_services": "Our Services",
       "banner_btn_gallery": "Browse Gallery",
 
+      // GALLERY
+      "gallery_page_title": "Our Gallery",
+      "gallery_loading": "Loading images...",
+      "gallery_view_video": "Watch Video",
+      "gallery_view_image": "View Image",
+
+      // Categories
+      "cat_antes_despues": "Before & After", // Main
+      "cat_nauticas": "Boats & Inflatables",
+      "cat_motores": "Engines",
+      "cat_taller": "Our Workshop",
+      "cat_paddle": "Paddle Surf",
 
       // CONTACT SECTION
       "contact_header": "CONTACT US",
