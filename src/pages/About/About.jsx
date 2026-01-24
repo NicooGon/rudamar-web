@@ -83,10 +83,15 @@ export default function About() {
             </li>
           </ul>
 
-          <button className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-[var(--color-white)] font-semibold px-10 py-4 rounded-md transition font-oswald flex items-center gap-3 text-lg" data-aos="fade-left" data-aos-delay="400">
+          <a
+            href="#contactanos"
+            className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-[var(--color-white)] font-semibold px-10 py-4 rounded-md max-w-60 xl:max-w-60 lg:max-w-50  transition font-oswald flex items-center gap-3 text-lg"
+            data-aos="fade-left"
+            data-aos-delay="400"
+          >
             <GrContact className="text-white text-xl" />
             {t('about_btn_contact')}
-          </button>
+          </a>
         </div>
 
         <div className="relative ml-6 order-2 lg:order-1">

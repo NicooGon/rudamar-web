@@ -12,6 +12,7 @@ import Services from './pages/Services/Services.jsx';
 import Reseñas from './pages/Reseñas/Reseñas.jsx';
 
 import './index.css';
+import ContactPage from './pages/Contact/Contact.jsx';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Route path="/servicios" element={<Services />} />
 
         <Route path="/Historia" element={<Reseñas />} />
+
+        <Route path='/contactanos' element={<ContactPage></ContactPage>} />
         
         {/* Capturar rutas no existentes - redirige al menú */}
         <Route path="*" element={<Navigate to="/menu" replace />} />

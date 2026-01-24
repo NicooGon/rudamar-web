@@ -22,10 +22,10 @@ export default function ContactPage() {
   return (
     <section
       id="contactanos"
-      className="relative w-full py-20 bg-gradient-to-b from-sky-200 via-sky-200 to-slate-700 overflow-hidden"
+      className="relative w-full py-20 bg-gradient-to-b from-sky-300 via-sky-300 to-slate-700 overflow-hidden"
     >
       <div className="relative z-10 mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] w-[90%] max-w-[480px] md:max-w-3xl lg:max-w-5xl xl:max-w-7xl" data-aos="fade-up">
-        <div className="relative h-[360px] lg:min-h-[600px]">
+        <div className="relative h-[470px] lg:min-h-[690px]">
           <iframe
             title="Ubicación Rudamar"
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4656.923372868926!2d-4.473338597942474!3d36.69376887810722!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f9fc0e20734f%3A0x33a1948d7148b2b2!2sRudamar-Spain!5e0!3m2!1ses!2sve!4v1768516642354!5m2!1ses!2sve"
