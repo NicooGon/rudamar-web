@@ -32,9 +32,16 @@ export const Menu = () => {
     <Layout>
       <BannerPrincipal />
       <About />
-      <Services />
-      <BeforeAfterPreview />
-      <ContactPage />
+       <div className="relative overflow-hidden">
+
+        <div className="bubble-container" />
+        
+        <Services />
+        <BeforeAfterPreview />
+        <ContactPage />
+
+      </div>
+    
       <FloatingButtons />
       <Footer />
     </Layout>
