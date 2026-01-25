@@ -39,7 +39,7 @@ const resources = {
 
       // FOOTER
       "footer_subtitle": "Servicio Oficial Narwhal",
-      "footer_desc": "En nuestro taller nos caracterizamos por tener un equipo altamente cualificado. Ofrecemos soluciones integrales en mecánica naval, fibra de vidrio y mantenimiento de embarcaciones en la Costa del Sol.",
+      "footer_desc": "En nuestro taller nos caracterizamos por tener experiencia altamente cualificado. Ofrecemos soluciones integrales en mecánica naval, fibra de vidrio y mantenimiento de embarcaciones en la Costa del Sol.",
       "footer_btn_quote": "Solicitar Presupuesto",
       "footer_contact_heading": "Contacto",
       "footer_label_address": "Dirección",
@@ -102,7 +102,7 @@ const resources = {
       "showcase_subtitle": "Resultados Reales",
       "showcase_title": "Experiencia y Prestigio",
       "showcase_text_1": "En Rudamar, cada motor y cada casco cuentan una historia. Como esta reparación integral de un motor Suzuki, donde aplicamos nuestros protocolos más exigentes.",
-      "showcase_text_2": "Nuestro equipo técnico se mantiene en constante formación para dominar las últimas tecnologías en motores fueraborda y reparación de fibra.",
+      "showcase_text_2": "Nuestras habilidades técnicas se mantienen en constante formación para dominar las últimas tecnologías en motores fueraborda y reparación de fibra.",
       "showcase_list_1": "Reparaciones Garantizadas",
       "showcase_list_2": "Materiales Homologados",
       "showcase_list_3": "Servicio Oficial",
@@ -167,6 +167,18 @@ const resources = {
       "ba_preview_btn": "Ver Galería Completa",
       "ba_label_before": "Antes",
       "ba_label_after": "Después",
+      
+      "modal_title": "Elige tu medio preferido",
+      "modal_subtitle": "Estamos disponibles para atenderte rápidamente.",
+      
+      "modal_wa_sub": "Respuesta inmediata",
+      
+      "modal_email_label": "Formulario / Email",
+      "modal_email_sub": "Envíanos un correo",
+      "modal_email_sub_go": "Ir a página de contacto", // Variación para cuando es un enlace
+      
+      "modal_insta_sub": "Síguenos",
+      "modal_fb_sub": "Visita nuestra página"
       // ... aquí irás agregando todos tus textos en español
     }
   },
@@ -224,7 +236,7 @@ const resources = {
 
       // FOOTER
       "footer_subtitle": "Official Narwhal Service",
-      "footer_desc": "Our workshop is characterized by a highly qualified team. We offer comprehensive solutions in naval mechanics, fiberglass, and boat maintenance on the Costa del Sol.",
+      "footer_desc": "In our workshop, we are known for having highly qualified experience. We offer comprehensive solutions in naval mechanics, fiberglass, and boat maintenance on the Costa del Sol.",
       "footer_btn_quote": "Request Quote",
       "footer_contact_heading": "Contact",
       "footer_label_address": "Address",
@@ -287,10 +299,22 @@ const resources = {
       "showcase_subtitle": "Real Results",
       "showcase_title": "Experience and Prestige",
       "showcase_text_1": "At Rudamar, every engine and every hull tells a story. Like this comprehensive repair of a Suzuki engine, where we apply our most demanding protocols.",
-      "showcase_text_2": "Our technical team is constantly training to master the latest technologies in outboard motors and fiberglass repair.",
+      "showcase_text_2": "Our technical skills are constantly being developed to master the latest technologies in outboard motors and fiberglass repair.",
       "showcase_list_1": "Guaranteed Repairs",
       "showcase_list_2": "Approved Materials",
       "showcase_list_3": "Official Service",
+
+      "modal_title": "Choose your preferred method",
+      "modal_subtitle": "We are available to assist you quickly.",
+      
+      "modal_wa_sub": "Immediate response",
+      
+      "modal_email_label": "Form / Email",
+      "modal_email_sub": "Send us an email",
+      "modal_email_sub_go": "Go to contact page",
+      
+      "modal_insta_sub": "Follow us",
+      "modal_fb_sub": "Visit our page",
 
       // Reviews Grid Section
       "reviews_section_title": "What our clients say",

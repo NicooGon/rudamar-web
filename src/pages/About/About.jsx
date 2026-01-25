@@ -133,104 +133,119 @@ export default function About() {
 
       {/* 4. MODAL DE CONTACTO */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay oscuro */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
-            onClick={() => setShowModal(false)}
-          ></div>
-
-          {/* Contenido del Modal */}
-          <div 
-            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-100"
-            data-aos="zoom-in" 
-            data-aos-duration="300"
-          >
-            {/* Botón cerrar */}
-            <button 
-              onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
-            >
-              <FaTimes size={20} />
-            </button>
-
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-oswald font-bold text-[var(--color-text-main)] uppercase tracking-wide">
-                Elige tu medio preferido
-              </h3>
-              <p className="text-gray-500 text-sm mt-2 font-roboto">
-                Estamos disponibles para atenderte rápidamente.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3">
-              {/* Opción: WhatsApp */}
-              <a 
-                href="https://wa.me/34686794141?text=Hola,%20quiero%20información" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center p-4 rounded-xl border border-gray-100 bg-green-50 hover:bg-green-100 transition group"
-              >
-                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
-                  <FaWhatsapp size={20} />
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                {/* Overlay */}
+                <div 
+                  className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+                  onClick={() => setShowModal(false)}
+                ></div>
+      
+                {/* Contenido */}
+                <div 
+                  className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-100"
+                  data-aos="zoom-in" 
+                  data-aos-duration="300"
+                >
+                  <button 
+                    onClick={() => setShowModal(false)}
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+                  >
+                    <FaTimes size={20} />
+                  </button>
+      
+                  <div className="text-center mb-6">
+                    {/* TÍTULO TRADUCIDO */}
+                    <h3 className="text-2xl font-oswald font-bold text-[var(--color-text-main)] uppercase tracking-wide">
+                      {t('modal_title')}
+                    </h3>
+                    {/* SUBTÍTULO TRADUCIDO */}
+                    <p className="text-gray-500 text-sm mt-2 font-roboto">
+                      {t('modal_subtitle')}
+                    </p>
+                  </div>
+      
+                  <div className="grid grid-cols-1 gap-3">
+                    
+                    {/* WhatsApp */}
+                    <a 
+                      href="https://wa.me/34686794141?text=Hola,%20quiero%20información" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center p-4 rounded-xl border border-gray-100 bg-green-50 hover:bg-green-100 transition group"
+                      style={{textDecoration: 'none'}}
+                    >
+                      <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                        <FaWhatsapp size={20} />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-gray-800 font-oswald">WhatsApp</span>
+                        {/* TEXTO PEQUEÑO TRADUCIDO */}
+                        <span className="text-xs text-gray-500">{t('modal_wa_sub')}</span>
+                      </div>
+                    </a>
+      
+                    {/* Email / Formulario */}
+                    {/* NOTA: Verifica el href según el archivo donde estés (About=#contactanos o Reseñas=/contacto) */}
+                    <a 
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=rudamarspain@gmail.com&su=Consulta%20desde%20la%20web" 
+                      onClick={() => setShowModal(false)}
+                      className="flex items-center p-4 rounded-xl border border-gray-100 bg-blue-50 hover:bg-blue-100 transition group"
+                      style={{textDecoration: 'none'}}
+                    >
+                      <div className="w-10 h-10 bg-[#5c86c4] rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                        <FaEnvelope size={18} />
+                      </div>
+                      <div>
+                        {/* ETIQUETA TRADUCIDA */}
+                        <span className="block font-bold text-gray-800 font-oswald">{t('modal_email_label')}</span>
+                        {/* TEXTO PEQUEÑO TRADUCIDO (Lógica para variar el texto según la página) */}
+                        <span className="text-xs text-gray-500">
+                          {window.location.pathname.includes('resenas') ? t('modal_email_sub_go') : t('modal_email_sub')}
+                        </span>
+                      </div>
+                    </a>
+      
+                    {/* Instagram */}
+                    <a 
+                      href="https://www.instagram.com/rudamar_spain_/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center p-4 rounded-xl border border-gray-100 bg-pink-50 hover:bg-pink-100 transition group"
+                      style={{textDecoration: 'none'}}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                        <FaInstagram size={20} />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-gray-800 font-oswald">Instagram</span>
+                        {/* TEXTO PEQUEÑO TRADUCIDO */}
+                        <span className="text-xs text-gray-500">{t('modal_insta_sub')}</span>
+                      </div>
+                    </a>
+      
+                    {/* Facebook */}
+                    <a 
+                      href="https://www.facebook.com/share/14SiM2fDXZz/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center p-4 rounded-xl border border-gray-100 bg-indigo-50 hover:bg-indigo-100 transition group"
+                      style={{textDecoration: 'none'}}
+                    >
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                        <FaFacebookF size={20} />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-gray-800 font-oswald">Facebook</span>
+                        {/* TEXTO PEQUEÑO TRADUCIDO */}
+                        <span className="text-xs text-gray-500">{t('modal_fb_sub')}</span>
+                      </div>
+                    </a>
+      
+                  </div>
                 </div>
-                <div>
-                  <span className="block font-bold text-gray-800 font-oswald">WhatsApp</span>
-                  <span className="text-xs text-gray-500">Respuesta inmediata</span>
-                </div>
-              </a>
-
-              {/* Opción: Formulario / Email */}
-              <a 
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=rudamarspain@gmail.com&su=Consulta%20desde%20la%20web" 
-                onClick={() => setShowModal(false)}
-                className="flex items-center p-4 rounded-xl border border-gray-100 bg-blue-50 hover:bg-blue-100 transition group"
-              >
-                <div className="w-10 h-10 bg-[#5c86c4] rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
-                  <FaEnvelope size={18} />
-                </div>
-                <div>
-                  <span className="block font-bold text-gray-800 font-oswald">Formulario / Email</span>
-                  <span className="text-xs text-gray-500">Envíanos un correo</span>
-                </div>
-              </a>
-
-              {/* Opción: Instagram */}
-              <a 
-                href="https://www.instagram.com/rudamar_spain_/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center p-4 rounded-xl border border-gray-100 bg-pink-50 hover:bg-pink-100 transition group"
-              >
-                <div className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
-                  <FaInstagram size={20} />
-                </div>
-                <div>
-                  <span className="block font-bold text-gray-800 font-oswald">Instagram</span>
-                  <span className="text-xs text-gray-500">Síguenos</span>
-                </div>
-              </a>
-
-              {/* Opción: Facebook */}
-              <a 
-                href="https://www.facebook.com/share/14SiM2fDXZz/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center p-4 rounded-xl border border-gray-100 bg-indigo-50 hover:bg-indigo-100 transition group"
-              >
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
-                  <FaFacebookF size={20} />
-                </div>
-                <div>
-                  <span className="block font-bold text-gray-800 font-oswald">Facebook</span>
-                  <span className="text-xs text-gray-500">Visita nuestra página</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
+              </div>
+            )}
+            
     </section>
   );
 }

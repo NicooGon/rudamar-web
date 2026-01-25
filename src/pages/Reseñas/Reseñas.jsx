@@ -198,19 +198,18 @@ const Reseñas = () => {
       {/* 6. MODAL DE CONTACTO (Copiado y adaptado) */}
       {showModal && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-          {/* Overlay oscuro */}
+          {/* Overlay */}
           <div 
             className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
             onClick={() => setShowModal(false)}
           ></div>
 
-          {/* Contenido del Modal */}
+          {/* Contenido */}
           <div 
             className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-100"
             data-aos="zoom-in" 
             data-aos-duration="300"
           >
-            {/* Botón cerrar */}
             <button 
               onClick={() => setShowModal(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
@@ -219,16 +218,19 @@ const Reseñas = () => {
             </button>
 
             <div className="text-center mb-6">
+              {/* TÍTULO TRADUCIDO */}
               <h3 className="text-2xl font-oswald font-bold text-[var(--color-text-main)] uppercase tracking-wide">
-                Elige tu medio preferido
+                {t('modal_title')}
               </h3>
+              {/* SUBTÍTULO TRADUCIDO */}
               <p className="text-gray-500 text-sm mt-2 font-roboto">
-                Estamos disponibles para atenderte rápidamente.
+                {t('modal_subtitle')}
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-3">
-              {/* Opción: WhatsApp */}
+              
+              {/* WhatsApp */}
               <a 
                 href="https://wa.me/34686794141?text=Hola,%20quiero%20información" 
                 target="_blank" 
@@ -241,13 +243,16 @@ const Reseñas = () => {
                 </div>
                 <div>
                   <span className="block font-bold text-gray-800 font-oswald">WhatsApp</span>
-                  <span className="text-xs text-gray-500">Respuesta inmediata</span>
+                  {/* TEXTO PEQUEÑO TRADUCIDO */}
+                  <span className="text-xs text-gray-500">{t('modal_wa_sub')}</span>
                 </div>
               </a>
 
-              {/* Opción: Formulario / Email (Redirige a la página de contacto) */}
+              {/* Email / Formulario */}
+              {/* NOTA: Verifica el href según el archivo donde estés (About=#contactanos o Reseñas=/contacto) */}
               <a 
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=rudamarspain@gmail.com&su=Consulta%20desde%20la%20web" 
+                onClick={() => setShowModal(false)}
                 className="flex items-center p-4 rounded-xl border border-gray-100 bg-blue-50 hover:bg-blue-100 transition group"
                 style={{textDecoration: 'none'}}
               >
@@ -255,12 +260,16 @@ const Reseñas = () => {
                   <FaEnvelope size={18} />
                 </div>
                 <div>
-                  <span className="block font-bold text-gray-800 font-oswald">Formulario / Email</span>
-                  <span className="text-xs text-gray-500">Ir a página de contacto</span>
+                  {/* ETIQUETA TRADUCIDA */}
+                  <span className="block font-bold text-gray-800 font-oswald">{t('modal_email_label')}</span>
+                  {/* TEXTO PEQUEÑO TRADUCIDO (Lógica para variar el texto según la página) */}
+                  <span className="text-xs text-gray-500">
+                    {window.location.pathname.includes('resenas') ? t('modal_email_sub_go') : t('modal_email_sub')}
+                  </span>
                 </div>
               </a>
 
-              {/* Opción: Instagram */}
+              {/* Instagram */}
               <a 
                 href="https://www.instagram.com/rudamar_spain_/" 
                 target="_blank" 
@@ -273,11 +282,12 @@ const Reseñas = () => {
                 </div>
                 <div>
                   <span className="block font-bold text-gray-800 font-oswald">Instagram</span>
-                  <span className="text-xs text-gray-500">Síguenos</span>
+                  {/* TEXTO PEQUEÑO TRADUCIDO */}
+                  <span className="text-xs text-gray-500">{t('modal_insta_sub')}</span>
                 </div>
               </a>
 
-              {/* Opción: Facebook */}
+              {/* Facebook */}
               <a 
                 href="https://www.facebook.com/share/14SiM2fDXZz/" 
                 target="_blank" 
@@ -290,9 +300,11 @@ const Reseñas = () => {
                 </div>
                 <div>
                   <span className="block font-bold text-gray-800 font-oswald">Facebook</span>
-                  <span className="text-xs text-gray-500">Visita nuestra página</span>
+                  {/* TEXTO PEQUEÑO TRADUCIDO */}
+                  <span className="text-xs text-gray-500">{t('modal_fb_sub')}</span>
                 </div>
               </a>
+
             </div>
           </div>
         </div>

@@ -35,6 +35,7 @@ export const Menu = () => {
       <Services />
       <BeforeAfterPreview />
       <ContactPage />
+      <FloatingButtons />
       <Footer />
     </Layout>
   );
