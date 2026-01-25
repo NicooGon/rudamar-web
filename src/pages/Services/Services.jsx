@@ -65,7 +65,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="servicios" className="relative py-16 min-h-[60vh] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden">
+    <section id="servicios" className="relative py-16 min-h-[60vh] bg-gradient-to-b from-sky-50 via-slate-50 to-sky-200 overflow-hidden scroll-mt-32">
 
       <BrushBackground />
 

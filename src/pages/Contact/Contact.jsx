@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FaClock, FaDirections, FaPaperPlane, FaUser, FaPhoneAlt, FaEnvelope, FaCommentDots } from "react-icons/fa";
+import { FaPaperPlane, FaUser, FaPhoneAlt, FaEnvelope, FaCommentDots } from "react-icons/fa";
 import { AlertDialog, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel } from "../../components/Alert/Alert.jsx";
 import { useTranslation } from 'react-i18next';
+import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
   const [nombre, setNombre] = useState("");
@@ -17,12 +18,33 @@ export default function ContactPage() {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const templateParams = { nombre, apellido, telefono, email, mensaje };
+
+    emailjs
+      .send("service_ctvnqhi", "template_j0sh0dn", templateParams, "DLlmOEelGeMqhbXbi")
+      .then(
+        () => {
+          setNombre("");
+          setEmail("");
+          setMensaje("");
+          setIsOpen(true); 
+        },
+        (error) => {
+          alert("Error al enviar el correo, intente nuevamente.");
+          console.error(error);
+        }
+      );
+  };
+  
   const { t } = useTranslation();
 
   return (
     <section
       id="contactanos"
-      className="relative w-full py-20 bg-gradient-to-b from-sky-300 via-sky-300 to-slate-700 overflow-hidden"
+      className="relative w-full py-20 bg-gradient-to-b from-sky-300 via-sky-300 to-slate-700 overflow-hidden scroll-mt-32"
     >
       <div className="relative z-10 mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] w-[90%] max-w-[480px] md:max-w-3xl lg:max-w-5xl xl:max-w-7xl" data-aos="fade-up">
         <div className="relative h-[470px] lg:min-h-[690px]">
@@ -45,10 +67,7 @@ export default function ContactPage() {
           </div>
 
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsOpen(true);
-            }}
+            onSubmit={sendEmail}
             className="space-y-4"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

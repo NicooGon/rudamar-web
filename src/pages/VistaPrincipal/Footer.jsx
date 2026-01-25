@@ -34,7 +34,7 @@ const Footer = () => {
                 {t('footer_desc')}
             </p>
 
-            <a href="/contacto" className="btn-footer-action">
+            <a href="/menu#contactanos" className="btn-footer-action">
                 {t('footer_btn_quote')} <FaShip />
             </a>
         </div>
