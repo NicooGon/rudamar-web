@@ -24,10 +24,12 @@ export default function ContactPage() {
     const templateParams = { nombre, apellido, telefono, email, mensaje };
 
     emailjs
-      .send("service_ctvnqhi", "template_j0sh0dn", templateParams, "DLlmOEelGeMqhbXbi")
+      .send("service_mh1vcfg", "template_khqxu9f", templateParams, "y6UwgmgWX1myE-vY_")
       .then(
         () => {
           setNombre("");
+          setApellido("");
+          setTelefono("");
           setEmail("");
           setMensaje("");
           setIsOpen(true); 
@@ -100,7 +102,7 @@ export default function ContactPage() {
             <div className="relative">
               <FaPhoneAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
-                type="tel"
+                type="number"
                 placeholder={t('form_phone')}
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
