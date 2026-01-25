@@ -13,6 +13,7 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -21,10 +22,24 @@ export default function ContactPage() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const templateParams = { nombre, apellido, telefono, email, mensaje };
+    if (sending) return; 
+    setSending(true);
+
+    const templateParams = {
+      nombre,
+      apellido,
+      telefono,
+      email,
+      mensaje,
+    };
 
     emailjs
-      .send("service_mh1vcfg", "template_khqxu9f", templateParams, "y6UwgmgWX1myE-vY_")
+      .send(
+        "service_mh1vcfg",
+        "template_khqxu9f",
+        templateParams,
+        "y6UwgmgWX1myE-vY_"
+      )
       .then(
         () => {
           setNombre("");
@@ -32,14 +47,18 @@ export default function ContactPage() {
           setTelefono("");
           setEmail("");
           setMensaje("");
-          setIsOpen(true); 
+
+          setIsOpen(true);
+          setSending(false);
         },
         (error) => {
           alert("Error al enviar el correo, intente nuevamente.");
           console.error(error);
+          setSending(false);
         }
       );
   };
+
   
   const { t } = useTranslation();
 
@@ -137,9 +156,16 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full mt-2 py-4 bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-white font-bold uppercase rounded-lg flex items-center justify-center gap-3"
+              disabled={sending}
+              className={`w-full mt-2 py-4 font-bold uppercase rounded-lg flex items-center justify-center gap-3 transition
+                ${
+                  sending
+                    ? "bg-slate-400 cursor-not-allowed"
+                    : "bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-white"
+                }
+              `}
             >
-              <FaPaperPlane /> {t('form_btn_send')}
+              <FaPaperPlane /> {t("form_btn_send")}
             </button>
           </form>
         </div>
