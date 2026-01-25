@@ -123,11 +123,6 @@ const Layout = ({ children }) => {
           </li>
         </ul>
 
-        <div className="sidebar-footer">
-           <button className="btn-sidebar-action">
-             <FaShip style={{marginRight: '8px'}}/> {t('btn_contacto')}
-           </button>
-        </div>
       </aside>
 
       {/* =======================
@@ -180,7 +175,6 @@ const Layout = ({ children }) => {
               <div className="info-text">
                 <span className="label">Email</span>
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=rudamarspain@gmail.com&su=Consulta%20desde%20la%20web"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="value"

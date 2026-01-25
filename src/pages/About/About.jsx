@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import Imagen1 from '@/images/Imagen1.jpeg';
+import Imagen1 from '@/images/Imagen1.jpeg'; // Asegúrate que la ruta sea correcta
 import { GiAutoRepair } from 'react-icons/gi';
 import { GrContact } from "react-icons/gr";
+// 1. IMPORTAMOS NUEVOS ICONOS PARA EL MODAL
+import { FaWhatsapp, FaInstagram, FaFacebookF, FaEnvelope, FaTimes } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// 1. IMPORTAR EL HOOK DE TRADUCCIÓN
 import { useTranslation } from 'react-i18next';
 
 function AnimatedNumber({ target }) {
@@ -32,16 +33,27 @@ function AnimatedNumber({ target }) {
 }
 
 export default function About() {
-  // 2. USAR EL HOOK
   const { t } = useTranslation();
+  
+  // 2. ESTADO PARA CONTROLAR EL MODAL
+  const [showModal, setShowModal] = useState(false);
 
-   useEffect(() => {
+  useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       easing: "ease-out-cubic",
     });
   }, []);
+
+  // Función para evitar scroll cuando el modal está abierto
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showModal]);
 
   return (
     <section className="relative bg-gradient-to-b from-white via-white via-[50%] to-sky-50 py-12 pb-48 overflow-hidden">
@@ -83,24 +95,23 @@ export default function About() {
             </li>
           </ul>
 
-          <a
-            href="#contactanos"
-            className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-[var(--color-white)] font-semibold px-10 py-4 rounded-md max-w-60 xl:max-w-60 lg:max-w-50  transition font-oswald flex items-center gap-3 text-lg"
+          {/* 3. BOTÓN MODIFICADO PARA ABRIR MODAL */}
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-hover)] text-[var(--color-white)] font-semibold px-10 py-4 rounded-md transition font-oswald flex items-center gap-3 text-lg cursor-pointer"
             data-aos="fade-left"
             data-aos-delay="400"
           >
             <GrContact className="text-white text-xl" />
             {t('about_btn_contact')}
-          </a>
+          </button>
         </div>
 
         <div className="relative ml-6 order-2 lg:order-1">
-
           <div
             className="absolute -bottom-14 -left-8 w-36 sm:w-44 md:w-60 lg:w-64 h-36 sm:h-24 md:h-46 lg:h-58 bg-[var(--color-brand-primary)] z-0"
             style={{ clipPath: 'polygon(0 100%, 0 0, 100% 100%)' }}
           />
-
           <div className="overflow-hidden rounded-xl shadow-2xl relative z-10">
             <img
               src={Imagen1}
@@ -108,7 +119,6 @@ export default function About() {
               className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem] object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>
-
           <div className="absolute -bottom-6 sm:-bottom-8 md:-bottom-10 left-4 sm:left-6 md:left-8 bg-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 rounded-xl shadow-lg z-20" data-aos="fade-right" data-aos-delay="20">
             <p className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-[var(--color-brand-primary)] font-oswald">
               <AnimatedNumber target={20} />
@@ -117,10 +127,110 @@ export default function About() {
               {t('about_years_exp')}
             </p>
           </div>
-
         </div>
 
       </div>
+
+      {/* 4. MODAL DE CONTACTO */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Overlay oscuro */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+            onClick={() => setShowModal(false)}
+          ></div>
+
+          {/* Contenido del Modal */}
+          <div 
+            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-100"
+            data-aos="zoom-in" 
+            data-aos-duration="300"
+          >
+            {/* Botón cerrar */}
+            <button 
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
+            >
+              <FaTimes size={20} />
+            </button>
+
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-oswald font-bold text-[var(--color-text-main)] uppercase tracking-wide">
+                Elige tu medio preferido
+              </h3>
+              <p className="text-gray-500 text-sm mt-2 font-roboto">
+                Estamos disponibles para atenderte rápidamente.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3">
+              {/* Opción: WhatsApp */}
+              <a 
+                href="https://wa.me/34686794141?text=Hola,%20quiero%20información" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center p-4 rounded-xl border border-gray-100 bg-green-50 hover:bg-green-100 transition group"
+              >
+                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                  <FaWhatsapp size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-gray-800 font-oswald">WhatsApp</span>
+                  <span className="text-xs text-gray-500">Respuesta inmediata</span>
+                </div>
+              </a>
+
+              {/* Opción: Formulario / Email */}
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=rudamarspain@gmail.com&su=Consulta%20desde%20la%20web" 
+                onClick={() => setShowModal(false)}
+                className="flex items-center p-4 rounded-xl border border-gray-100 bg-blue-50 hover:bg-blue-100 transition group"
+              >
+                <div className="w-10 h-10 bg-[#5c86c4] rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                  <FaEnvelope size={18} />
+                </div>
+                <div>
+                  <span className="block font-bold text-gray-800 font-oswald">Formulario / Email</span>
+                  <span className="text-xs text-gray-500">Envíanos un correo</span>
+                </div>
+              </a>
+
+              {/* Opción: Instagram */}
+              <a 
+                href="https://www.instagram.com/rudamar_spain_/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center p-4 rounded-xl border border-gray-100 bg-pink-50 hover:bg-pink-100 transition group"
+              >
+                <div className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                  <FaInstagram size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-gray-800 font-oswald">Instagram</span>
+                  <span className="text-xs text-gray-500">Síguenos</span>
+                </div>
+              </a>
+
+              {/* Opción: Facebook */}
+              <a 
+                href="https://www.facebook.com/share/14SiM2fDXZz/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center p-4 rounded-xl border border-gray-100 bg-indigo-50 hover:bg-indigo-100 transition group"
+              >
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white mr-4 shadow-sm group-hover:scale-110 transition">
+                  <FaFacebookF size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-gray-800 font-oswald">Facebook</span>
+                  <span className="text-xs text-gray-500">Visita nuestra página</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }
