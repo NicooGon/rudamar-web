@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Importamos el hook de traducción
+import { useTranslation } from 'react-i18next';
 import './Layout.css';
 
-// 1. IMPORTAMOS EL LOGO
+// 1. IMPORTAR HashLink (Clave para solucionar tu problema)
+import { HashLink } from 'react-router-hash-link';
+
+// IMÁGENES
 import logoImg from '../../images/logo_nuevo.png'; 
 
-// 2. IMPORTAMOS EL SWITCH DE IDIOMA
-import LanguageSwitch from '../LanguageSwitch/LanguageSwitch'; // Importamos el componente LanguageSwitch
+// COMPONENTES
+import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 
-// 3. IMPORTAMOS EL COMPONENTE FOOTER Y LOS BOTONES FLOTANTES
-import Footer from '../../pages/VistaPrincipal/Footer'; // Importamos el nuevo Footer
-import FloatingButtons from '../FloatingButtons/FloatingButtons'; // Importamos los FloatingButtons
-
+// ICONOS
 import { 
   FaPhoneAlt, FaWhatsapp, FaEnvelope, FaShip, 
   FaBars, FaTimes, FaChevronRight 
@@ -23,16 +23,14 @@ const Layout = ({ children }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
-  
-  // Usamos el hook de traducción
-  const { t } = useTranslation(); // Inicializamos la traducción
+  const { t } = useTranslation();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
 
-  // Detectar si estamos en la página principal
   const isHomePage = location.pathname === '/';
 
+  // --- LÓGICA DE SCROLL (Sticky Header) ---
   useEffect(() => {
     let ticking = false;
 
@@ -41,52 +39,40 @@ const Layout = ({ children }) => {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           
-          // LÓGICA DIFERENTE PARA PÁGINA PRINCIPAL VS OTRAS PÁGINAS
           if (isHomePage) {
-            // EN PÁGINA PRINCIPAL: Solo se oculta cuando el banner sale de vista
-            const banner = document.querySelector('.hero-section');
-            
+            const banner = document.querySelector('.hero-section'); // Asegúrate que tu banner tenga esta clase
             if (banner) {
               const bannerRect = banner.getBoundingClientRect();
-              const bannerBottom = bannerRect.bottom;
-              
-              // Si el banner ha salido completamente de la vista
-              if (bannerBottom <= 0) {
+              if (bannerRect.bottom <= 0) {
                 setIsSticky(true);
               } else {
                 setIsSticky(false);
               }
             }
           } else {
-            // EN OTRAS PÁGINAS: Se oculta inmediatamente al bajar
+            // En otras páginas
             if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-              // Bajando: ocultar
-              setIsSticky(true);
+              setIsSticky(true); // Bajando: ocultar (o mostrar sticky según tu CSS)
             } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
-              // Subiendo o en top: mostrar
-              setIsSticky(false);
+              setIsSticky(false); // Subiendo: mostrar normal
             }
           }
           
           setLastScrollY(currentScrollY);
           ticking = false;
         });
-        
         ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isHomePage]);
 
-  // Resetear sticky al cambiar de página
+  // Resetear al cambiar de página
   useEffect(() => {
     setIsSticky(false);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0); // HashLink maneja el scroll, a veces esto interfiere si no es necesario
   }, [location.pathname]);
 
   return (
@@ -102,7 +88,6 @@ const Layout = ({ children }) => {
 
       <aside className={`sidebar-menu ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-           {/* Logo en Sidebar también */}
           <div className="sidebar-logo">
              <img src={logoImg} alt="Rudamar" style={{height: '35px'}} />
           </div>
@@ -112,50 +97,62 @@ const Layout = ({ children }) => {
         </div>
         
         <ul className="sidebar-links">
-          {/* Usamos t() para traducir los enlaces del sidebar */}
-          <li><Link to="/" onClick={closeSidebar}>{t('nav_inicio')} <FaChevronRight size={12}/></Link></li>
-          <li><Link to="/Historia" onClick={closeSidebar}>{t('nav_trayectoria')} <FaChevronRight size={12}/></Link></li>
-          <li><a href="/menu#servicios" onClick={closeSidebar}>{t('nav_servicios')} <FaChevronRight size={12}/></a></li>
-          <li><Link to="/galeria" onClick={closeSidebar}>{t('nav_galeria')} <FaChevronRight size={12}/></Link></li>
-          {/* Agregamos el switch de idioma al menú móvil también si lo deseas, o déjalo solo en desktop */}
+          {/* USAMOS HashLink PARA NAVEGACIÓN SUAVE */}
+          <li>
+            <HashLink smooth to="/#top" onClick={closeSidebar}>
+              {t('nav_inicio')} <FaChevronRight size={12}/>
+            </HashLink>
+          </li>
+          <li>
+            <Link to="/Historia" onClick={closeSidebar}>
+              {t('nav_trayectoria')} <FaChevronRight size={12}/>
+            </Link>
+          </li>
+          <li>
+            {/* AQUÍ ESTÁ LA MAGIA: smooth to="/#servicios" */}
+            <HashLink smooth to="/#servicios" onClick={closeSidebar}>
+              {t('nav_servicios')} <FaChevronRight size={12}/>
+            </HashLink>
+          </li>
+          <li>
+            <Link to="/galeria" onClick={closeSidebar}>
+              {t('nav_galeria')} <FaChevronRight size={12}/>
+            </Link>
+          </li>
+          
           <li style={{marginTop: '20px', paddingLeft: '20px'}}>
              <LanguageSwitch />
           </li>
         </ul>
-
       </aside>
 
       {/* =======================
-          HEADER PRINCIPAL - CON CLASE STICKY (TU LÓGICA)
+          HEADER PRINCIPAL
          ======================= */}
       <header className={`main-header ${isSticky ? 'sticky' : ''}`}>
         <div className="container header-content">
           
-          {/* Logo (Siempre visible) - AQUI IMPLEMENTAMOS LA IMAGEN */}
+          {/* Logo */}
           <div className="logo-area">
-             <Link to="/" className="brand-link">
+             <HashLink smooth to="/#top" className="brand-link">
                 <img 
                   src={logoImg} 
                   alt="Logo Rudamar" 
                   className="header-logo-img" 
                 />
                 <span className="logo-text">RUDAMAR</span>
-             </Link>
+             </HashLink>
           </div>
 
-          {/* Grupo Contacto (SOLO ESCRITORIO) */}
+          {/* Grupo Contacto (Escritorio) */}
           <div className="contact-group-desktop">
             
-            {/* 1. AQUÍ PONEMOS EL SWITCH (A la izquierda del primer info-item) */}
             <LanguageSwitch />
 
             <div className="info-item">
-              <div className="icon-box">
-                <FaWhatsapp />
-              </div>
+              <div className="icon-box"><FaWhatsapp /></div>
               <div className="info-text">
                 <span className="label">Whatsapp</span>
-              
                 <a
                   href="https://wa.me/34686794141?text=Hola,%20quiero%20información"
                   target="_blank"
@@ -169,14 +166,11 @@ const Layout = ({ children }) => {
             </div>
 
             <div className="info-item">
-              <div className="icon-box">
-                <FaEnvelope  />
-              </div>
+              <div className="icon-box"><FaEnvelope /></div>
               <div className="info-text">
                 <span className="label">Email</span>
                 <a
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:rudamarspain@gmail.com" // He corregido esto para que abra el correo
                   className="value"
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 >
@@ -186,12 +180,11 @@ const Layout = ({ children }) => {
             </div>
 
             <Link to="/galeria" className="btn-presupuesto">
-              {/* Usamos t() para traducir el texto */}
               {t('btn_presupuesto')} <FaShip />
             </Link>
           </div>
 
-          {/* Botón Hamburguesa (SOLO MÓVIL) */}
+          {/* Botón Hamburguesa */}
           <button className="hamburger-btn" onClick={toggleSidebar}>
             <FaBars />
           </button>
@@ -199,16 +192,38 @@ const Layout = ({ children }) => {
       </header>
 
       {/* =======================
-          NAVBAR (SOLO ESCRITORIO)
+          NAVBAR (Escritorio)
          ======================= */}
       <nav className="main-nav">
         <div className="container">
           <ul className="nav-list">
-            {/* Usamos t() para traducir los enlaces del navbar */}
-            <li className="nav-item active"><Link to="/">{t('nav_inicio')}</Link></li>
-            <li className="nav-item"><Link to="/Historia">{t('nav_trayectoria')}</Link></li>
-            <li className="nav-item"><a href="/menu#servicios">{t('nav_servicios')}</a></li>
-            <li className="nav-item"><Link to="/galeria">{t('nav_galeria')}</Link></li>
+            
+            {/* INICIO: Apunta al tope de la página principal */}
+            <li className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
+              <HashLink smooth to="/#top">
+                {t('nav_inicio')}
+              </HashLink>
+            </li>
+            
+            <li className={`nav-item ${location.pathname === '/Historia' ? 'active' : ''}`}>
+              <Link to="/Historia">
+                {t('nav_trayectoria')}
+              </Link>
+            </li>
+            
+            {/* SERVICIOS: Apunta a la sección ID en la home */}
+            <li className="nav-item">
+              <HashLink smooth to="/#servicios">
+                {t('nav_servicios')}
+              </HashLink>
+            </li>
+            
+            <li className={`nav-item ${location.pathname === '/galeria' ? 'active' : ''}`}>
+              <Link to="/galeria">
+                {t('nav_galeria')}
+              </Link>
+            </li>
+
           </ul>
         </div>
       </nav>
