@@ -59,7 +59,6 @@ export default function ContactPage() {
       );
   };
 
-  
   const { t } = useTranslation();
 
   return (
