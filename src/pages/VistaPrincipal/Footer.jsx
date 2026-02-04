@@ -57,7 +57,7 @@ const Footer = () => {
                     <div className="icon-wrap"><FaPhoneAlt /></div>
                     <div className="text-wrap">
                         <span className="label">{t('footer_label_phone')}</span>
-                        <p>928 417 651 - 625 195 905</p>
+                        <p>+34 686 79 41 41</p>
                     </div>
                 </li>
 
