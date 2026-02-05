@@ -49,7 +49,7 @@ const Footer = () => {
                     <div className="icon-wrap"><FaMapMarkerAlt /></div>
                     <div className="text-wrap">
                         <span className="label">{t('footer_label_address')}</span>
-                        <p>Calle Diderot 15, Nave 165<br/>29004 Málaga, España</p>
+                        <p>Calle Diderot 15, portón 5, nave 165 <br/>29004 Málaga, España</p>
                     </div>
                 </li>
 

@@ -56,7 +56,7 @@ const resources = {
         "Hinchables, semirrígidos y desmontables",
         "Reparación de pinchazos y rajas",
         "Sustitución de flotadores",
-        "Trabajos en PVC",
+        "Trabajos en PVC, Neopreno e Hypalon",
         "Cambio de válvulas",
         "Colocación de accesorios",
         "Limpieza de tubulares"
