@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Layout.css';
 
-// 1. IMPORTAR HashLink (Clave para solucionar tu problema)
+// 1. IMPORTAR HashLink
 import { HashLink } from 'react-router-hash-link';
 
 // IMÁGENES
@@ -22,6 +22,7 @@ const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -30,7 +31,30 @@ const Layout = ({ children }) => {
 
   const isHomePage = location.pathname === '/';
 
-  // --- LÓGICA DE SCROLL (Sticky Header) ---
+  // --- FUNCIÓN PARA EL OFFSET DEL SCROLL (IMPORTANTE PARA MENU PEGAJOSO) ---
+  // Esto evita que el menú tape el título cuando navegas a #servicios
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.scrollY;
+    const yOffset = -100; // Ajusta este valor según la altura de tu header (ej. -80 o -100)
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
+  }
+
+  // --- LÓGICA DE SCROLL RESTORATION (SOLUCIÓN A TU PROBLEMA DE "MITAD DE PÁGINA") ---
+  useEffect(() => {
+    // 1. Resetear estado sticky al cambiar de ruta
+    setIsSticky(false); 
+
+    // 2. Si la URL NO tiene un hash (como #servicios), SUBIR AL INICIO (0,0)
+    // Esto arregla que aparezcas a mitad de página al cambiar de vista.
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+    }
+    // Si TIENE hash, HashLink se encargará del scroll, así que no hacemos nada aquí.
+    
+  }, [location]); // Se ejecuta cada vez que cambias de ruta o hash
+
+
+  // --- LÓGICA DE STICKY HEADER ---
   useEffect(() => {
     let ticking = false;
 
@@ -40,7 +64,7 @@ const Layout = ({ children }) => {
           const currentScrollY = window.scrollY;
           
           if (isHomePage) {
-            const banner = document.querySelector('.hero-section'); // Asegúrate que tu banner tenga esta clase
+            const banner = document.querySelector('.hero-section'); 
             if (banner) {
               const bannerRect = banner.getBoundingClientRect();
               if (bannerRect.bottom <= 0) {
@@ -52,9 +76,9 @@ const Layout = ({ children }) => {
           } else {
             // En otras páginas
             if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-              setIsSticky(true); // Bajando: ocultar (o mostrar sticky según tu CSS)
+              setIsSticky(true); 
             } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
-              setIsSticky(false); // Subiendo: mostrar normal
+              setIsSticky(false); 
             }
           }
           
@@ -68,12 +92,6 @@ const Layout = ({ children }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isHomePage]);
-
-  // Resetear al cambiar de página
-  useEffect(() => {
-    setIsSticky(false);
-    // window.scrollTo(0, 0); // HashLink maneja el scroll, a veces esto interfiere si no es necesario
-  }, [location.pathname]);
 
   return (
     <div className="layout-container">
@@ -97,7 +115,6 @@ const Layout = ({ children }) => {
         </div>
         
         <ul className="sidebar-links">
-          {/* USAMOS HashLink PARA NAVEGACIÓN SUAVE */}
           <li>
             <HashLink smooth to="/#top" onClick={closeSidebar}>
               {t('nav_inicio')} <FaChevronRight size={12}/>
@@ -109,8 +126,8 @@ const Layout = ({ children }) => {
             </Link>
           </li>
           <li>
-            {/* AQUÍ ESTÁ LA MAGIA: smooth to="/#servicios" */}
-            <HashLink smooth to="/#servicios" onClick={closeSidebar}>
+            {/* Usamos scrollWithOffset para un ajuste perfecto */}
+            <HashLink to="/#servicios" scroll={scrollWithOffset} onClick={closeSidebar}>
               {t('nav_servicios')} <FaChevronRight size={12}/>
             </HashLink>
           </li>
@@ -170,7 +187,7 @@ const Layout = ({ children }) => {
               <div className="info-text">
                 <span className="label">Email</span>
                 <a
-                  href="mailto:rudamarspain@gmail.com" // He corregido esto para que abra el correo
+                  href="mailto:rudamarspain@gmail.com" 
                   className="value"
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 >
@@ -198,26 +215,28 @@ const Layout = ({ children }) => {
         <div className="container">
           <ul className="nav-list">
             
-            {/* INICIO: Apunta al tope de la página principal */}
+            {/* INICIO */}
             <li className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
               <HashLink smooth to="/#top">
                 {t('nav_inicio')}
               </HashLink>
             </li>
             
+            {/* TRAYECTORIA */}
             <li className={`nav-item ${location.pathname === '/Historia' ? 'active' : ''}`}>
               <Link to="/Historia">
                 {t('nav_trayectoria')}
               </Link>
             </li>
             
-            {/* SERVICIOS: Apunta a la sección ID en la home */}
+            {/* SERVICIOS - Usamos scrollWithOffset */}
             <li className="nav-item">
-              <HashLink smooth to="/#servicios">
+              <HashLink to="/#servicios" scroll={scrollWithOffset}>
                 {t('nav_servicios')}
               </HashLink>
             </li>
             
+            {/* GALERÍA */}
             <li className={`nav-item ${location.pathname === '/galeria' ? 'active' : ''}`}>
               <Link to="/galeria">
                 {t('nav_galeria')}
